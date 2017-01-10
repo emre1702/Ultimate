@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <object id="object (CJ_PIZ_POSTER2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="2666" doublesided="false" scale="1" dimension="0" posX="-1980.25684" posY="121.43066" posZ="29.80921" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (CJ_PIZZA_POSTER) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="2645" doublesided="false" scale="1" dimension="0" posX="-2473.73096" posY="773.06555" posZ="36.58708" rotX="0" rotY="0" rotZ="180.635"></object>
+    <object id="object (CJ_PIZ_POSTER2) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="2666" doublesided="false" scale="1" dimension="0" posX="-2469.13477" posY="773.0166" posZ="36.68551" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_PIZ_POSTER1) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="2667" doublesided="false" scale="1" dimension="0" posX="-2480.74121" posY="773.0412" posZ="36.66546" rotX="0" rotY="0" rotZ="0"></object>
+</map>

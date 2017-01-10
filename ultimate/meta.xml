@@ -1,0 +1,1414 @@
+<meta>
+	<info author="Zipper" type="gamemode" name="Ultimate-RL" description="German Reallife" />
+	
+	<min_mta_version client="1.3.1" server="1.3.1" />
+	
+	<!-- HALLOWEEN EVENT -->
+	<file src="models/13.txd" />
+	<file src="models/22.txd" />
+	<file src="models/68.txd" />
+	<file src="models/84.txd" />
+	<file src="models/152.txd" />
+	<file src="models/162.txd" />
+	<file src="models/264.txd" />
+	<file src="images/header_halloween.png" />
+	
+	<!-- MySQL IMMER als erstes starten!!! --->
+	
+	<script src="mysql\mysql_start.lua" />
+	<script src="mysql\mysql_functions.lua" />
+
+	<script src="mysql\auto_update_db.lua" />
+	
+	<script src="hook_server.lua" />
+	<script src="hook_client.lua" />
+	<script src="core\data_client.lua" type="client"/>	
+	
+	<!-- Client-Settings -->
+	<script src="clientdata\clientdata_client.lua" type="client"/>
+	<script src="clientdata\clientdata_load.lua" type="client"/>
+	<script src="clientdata\clientdata_server.lua" type="server"/>
+	
+	<script src="script.lua" />
+	<script src="usefull\utility.lua" />
+	<script src="usefull\utility.lua" type="client"/>
+	
+	<script src="vio_gui\vio_gui_client.lua" type="client" />
+	
+	<script src="core\clear.lua" />
+	<script src="core\data.lua" />	
+	<script src="core\license.lua" />
+	
+	<script src="settings\handling_settings_server.lua" type="server"/>
+	<script src="settings\settings_client.lua" type="client"/>
+	<script src="settings\settings_server.lua" />
+	<script src="settings\both_settings.lua" />
+	<script src="settings\both_settings.lua" type="client"/>
+	
+	<script src="carsys\carhouses\carhousesettings.lua" />
+	<script src="carsys\carhouses\carhousesettings.lua" type="client"/>
+
+	<!--- <script src="ai\ai_allround.lua"/> --->
+	<script src="ai\ai_client.lua" type="client"/>
+	<script src="ai\ai_city.lua"/>
+	<script src="ai\ai_car.lua"/>
+	<script src="ai\ai_server.lua" type="server"/><!---  --->
+	<!--- <script src="ai\ai_settings.lua" type="client"/> --->
+	<!--- <script src="ai\ai_settings.lua"/> --->
+	
+	<script src="client\definitions_client.lua" type="client" />
+	
+	<!--- <script src="blips\imagelib.lua" type="client" />
+	<script src="blips\blipstreamer_client.lua" type="client" />
+	<script src="blips\customblips.lua" type="client" />
+	<script src="blips\utility.lua" type="client" /> --->
+	
+	<!--- TESTMODE - Wichtig - Unbedingt rausnehmen!!! --->
+	<!--- <script src="usefull\dev_commands.lua" />
+	<script src="usefull\dev_client.lua" type="client" /> --->
+	<!--- <map src="usefull\dev_map.map" type="client" /> --->
+	<!--- Oberes Rausnehmen wenn Testmode = 0!!! --->
+	
+	<!--- Experimental - Unbedingt rausnehmen!!! --->
+	<!--- <script src="experimental\aircraftcarrier.lua" /> --->
+	<!--- <script src="experimental\aircraftcarrier_client.lua" type="client" /> --->
+	<!--- <script src="experimental\pathfind.lua" /> --->
+	<!--- Experimental - Unbedingt rausnehmen!!! --->
+	
+	<file src="sounds\bell.ogg" />
+	<file src="sounds\besetzt.mp3" />
+	<file src="sounds\click.wav" />
+	<file src="sounds\katjuscha.wav" />
+	<file src="sounds\kaching.mp3" />
+	<file src="sounds\keinanschluss.mp3" />
+	<file src="sounds\mouseclick.wav" />
+	<file src="sounds\reached.mp3" />
+	<file src="sounds\ringtone.mp3" />
+	<file src="sounds\sms.mp3" />
+	<file src="sounds\sprunk.ogg" />
+	<file src="sounds\tetris.mp3" />
+	<file src="sounds\hitsound.wav" />
+	<file src="sounds\registermusik.mp3" />
+	<file src="sounds\wartezeichen.mp3" />
+	
+	<file src="sounds\fahrstuhlmusik.mp3" />
+	<file src="sounds\klingel.mp3"/>
+	<file src="sounds\pianochill.mp3" />
+	<file src="sounds\tutsound.mp3" />
+	
+	<file src="images\easter_egg.png" />
+	
+	<file src="images\at400.jpg" />
+	<file src="images\arrow.png" />
+	<file src="images\blinker.png" />
+	<file src="images\blinker_r.png" />
+	<file src="images\cursor.png" />
+	<file src="images\link_cursor.png" />
+	<file src="images\profil.png" />
+	<file src="images\show.png" />
+	<file src="images\text_cursor.png" />
+	<file src="images\kill.png" />
+	<file src="images\damage.png" />
+	<file src="images\black.png" />
+	<file src="images\blut.png" />
+	<file src="images\cross-hair.png" />
+	<file src="images\disc.bmp" />
+	<file src="images\disc_night.bmp" />
+	<file src="images\dollar.png" />
+	<file src="images\engine.png" />
+	<file src="images\faggio.jpg" />
+	<file src="images\header.jpg" />
+	<file src="images\header_night.png" />
+	<file src="images\kuerbiss.png" />
+	<file src="images\liberty_tree.png" />
+	<file src="images\lights.png" />
+	<file src="images\lookout.png" />
+	<file src="images\medic.jpg" />
+	<file src="images\needle.png" />
+	<file src="images\noparking2_128.png" />
+	<file src="images\roadsign01_128.png" />
+	<file src="images\pokal.bmp" />
+	<file src="images\prompt.png" />
+	<file src="images\reddot.png" />
+	<file src="images\tampa.jpg" />
+	<file src="images\taxi.jpg" />
+	<file src="images\time.png" />
+
+	<file src="images/gps.png" />
+		
+	<file src="images/radar.jpg" />
+		
+	<file src="images/water.jpg" />
+		
+	<file src="images/spielerpfeil.png" />
+
+	<file src="images/hud/0.png" />
+	<file src="images/1.png" />
+	<file src="images/hud/wanted_active.png" />
+	<file src="images/hud/wanted_inactive.png" />
+		
+		
+	<file src="images/2.png" />
+		
+	<file src="images/3.png" />
+		
+	<file src="images/4.png" />
+		
+	<file src="images/5.png" />
+		
+	<file src="images/6.png" />
+		
+	<file src="images/7.png" />
+		
+	<file src="images/8.png" />
+		
+	<file src="images/9.png" />
+		
+	<file src="images/10.png" />
+		
+	<file src="images/11.png" />
+		
+	<file src="images/12.png" />
+		
+	<file src="images/13.png" />
+		
+	<file src="images/14.png" />
+		
+	<file src="images/15.png" />
+		
+	<file src="images/16.png" />
+		
+	<file src="images/17.png" />
+		
+	<file src="images/18.png" />
+		
+	<file src="images/19.png" />
+		
+	<file src="images/20.png" />
+		
+	<file src="images/21.png" />
+		
+	<file src="images/22.png" />		
+	<file src="images/23.png" />		
+	<file src="images/24.png" />		
+	<file src="images/25.png" />	
+	<file src="images/26.png" />		
+	<file src="images/27.png" />		
+	<file src="images/28.png" />		
+	<file src="images/29.png" />		
+	<file src="images/30.png" />		
+	<file src="images/31.png" />		
+	<file src="images/32.png" />		
+	<file src="images/33.png" />		
+	<file src="images/34.png" />		
+	<file src="images/35.png" />		
+	<file src="images/36.png" />		
+	<file src="images/37.png" />		
+	<file src="images/38.png" />		
+	<file src="images/39.png" />		
+	<file src="images/40.png" />		
+	<file src="images/41.png" />		
+	<file src="images/42.png" />		
+	<file src="images/43.png" />		
+	<file src="images/44.png" />
+		
+	<file src="images/45.png" />
+		
+	<file src="images/46.png" />
+<file src="images/hud/1.png" />
+		
+	<file src="images/hud/2.png" />
+		
+	<file src="images/hud/3.png" />
+		
+	<file src="images/hud/4.png" />
+		
+	<file src="images/hud/5.png" />
+		
+	<file src="images/hud/6.png" />
+		
+	<file src="images/hud/7.png" />
+		
+	<file src="images/hud/8.png" />
+		
+	<file src="images/hud/9.png" />
+		
+	<file src="images/hud/10.png" />
+		
+	<file src="images/hud/11.png" />
+		
+	<file src="images/hud/12.png" />
+		
+		
+	<file src="images/hud/14.png" />
+		
+	<file src="images/hud/15.png" />
+		
+	<file src="images/hud/16.png" />
+		
+	<file src="images/hud/17.png" />
+		
+	<file src="images/hud/18.png" />
+		
+	<file src="images/hud/22.png" />		
+	<file src="images/hud/23.png" />		
+	<file src="images/hud/24.png" />		
+	<file src="images/hud/25.png" />	
+	<file src="images/hud/26.png" />		
+	<file src="images/hud/27.png" />		
+	<file src="images/hud/28.png" />		
+	<file src="images/hud/29.png" />		
+	<file src="images/hud/30.png" />		
+	<file src="images/hud/31.png" />		
+	<file src="images/hud/32.png" />		
+	<file src="images/hud/33.png" />		
+	<file src="images/hud/34.png" />		
+	<file src="images/hud/35.png" />		
+	<file src="images/hud/36.png" />		
+	<file src="images/hud/37.png" />		
+	<file src="images/hud/38.png" />		
+	<file src="images/hud/39.png" />		
+	<file src="images/hud/40.png" />		
+	<file src="images/hud/41.png" />		
+	<file src="images/hud/42.png" />		
+	<file src="images/hud/43.png" />		
+	<file src="images/hud/44.png" />
+		
+	<file src="images/hud/45.png" />
+		
+	<file src="images/hud/46.png" />
+		
+	<file src="images/47.png" />
+		
+	<file src="images/48.png" />
+		
+	<file src="images/49.png" />
+		
+	<file src="images/50.png" />
+		
+	<file src="images/51.png" />
+		
+	<file src="images/52.png" />
+		
+	<file src="images/53.png" />
+		
+	<file src="images/54.png" />
+		
+	<file src="images/55.png" />
+		
+	<file src="images/56.png" />
+		
+	<file src="images/57.png" />
+		
+	<file src="images/58.png" />
+		
+	<file src="images/59.png" />
+		
+	<file src="images/60.png" />
+		
+	<file src="images/61.png" />
+		
+	<file src="images/62.png" />
+		
+	<file src="images/63.png" />
+		
+	<file src="images/up.png" />
+		
+	<file src="images/square.png" />
+		
+	<file src="images/down.png" />
+	
+	<file src="images\white.bmp" />
+	<file src="images\bloodscreen.png" />
+	<file src="images\scoreboard.png" />
+	
+	<file src="images\raindanc.txd" />
+	
+	<file src="images\addict\alc.png" />
+	<file src="images\addict\cig.png" />
+	<file src="images\addict\drug.png" />
+
+	<file src="images\carsys\nos\bottle.png" />
+	<file src="images\carsys\nos\nos.png" />
+	
+	<file src="images\chess\board\bg.png" />
+	<file src="images\chess\board\black.png" />
+	<file src="images\chess\board\mouse_over.png" />
+	<file src="images\chess\board\selected.png" />
+	<file src="images\chess\board\valid.png" />
+	<file src="images\chess\board\white.png" />
+	<file src="images\chess\black\bishop.png" />
+	<file src="images\chess\black\castle.png" />
+	<file src="images\chess\black\king.png" />
+	<file src="images\chess\black\knight.png" />
+	<file src="images\chess\black\pawn.png" />
+	<file src="images\chess\black\queen.png" />
+	<file src="images\chess\white\bishop.png" />
+	<file src="images\chess\white\castle.png" />
+	<file src="images\chess\white\king.png" />
+	<file src="images\chess\white\knight.png" />
+	<file src="images\chess\white\pawn.png" />
+	<file src="images\chess\white\queen.png" />
+	
+	<file src="images\colors\c_black.jpg" />
+	<file src="images\colors\c_blue.jpg" />
+	<file src="images\colors\c_green.jpg" />
+	<file src="images\colors\c_grey.jpg" />
+	<file src="images\colors\c_lblue.jpg" />
+	<file src="images\colors\c_red.jpg" />
+	<file src="images\colors\c_white.jpg" />
+	<file src="images\colors\c_yellow.jpg" />
+	<file src="images\colors\carcolors.png" />
+	<file src="images\colors\selection.png" />
+	<file src="images\colors\transparent.png" />
+	
+	<file src="images/gui/24-7.png" />
+	<file src="images/gui/bottle.png" />
+	<file src="images/gui/cross.png" />
+	<file src="images/gui/c_black.png" />
+	<file src="images/gui/c_red.png" />
+	<file src="images/gui/c_white.png" />
+	<file src="images/gui/done.png" />
+	<file src="images/gui/fraktion.png" />
+	<file src="images/gui/trailer.png" />
+	<file src="images/gui/geldautomat.png" />
+	<file src="images/gui/hunger_empty.png" />
+	<file src="images/gui/hunger_full.png" />
+	<file src="images/gui/inventar.png" />
+	<file src="images/gui/ueberweisung.png" />
+
+	
+	
+	<file src="images/gui/bar/bar_c1.png" />
+	<file src="images/gui/bar/bar_c2.png" />
+	
+	<file src="images\gui\police.png" />
+	
+	<file src="images\nametag\armed.png" />
+	<file src="images\nametag\armor.png" />
+	<file src="images\nametag\police.png" />
+	<file src="images\nametag\protected.png" />
+	<file src="images\nametag\target.png" />
+	<file src="images\nametag\wanted.png" />
+	
+	<file src="images\numbers\empty.bmp" />
+	<file src="images\numbers\0.bmp" />
+	<file src="images\numbers\1.bmp" />
+	<file src="images\numbers\2.bmp" />
+	<file src="images\numbers\3.bmp" />
+	<file src="images\numbers\4.bmp" />
+	<file src="images\numbers\5.bmp" />
+	<file src="images\numbers\6.bmp" />
+	<file src="images\numbers\7.bmp" />
+	<file src="images\numbers\8.bmp" />
+	<file src="images\numbers\9.bmp" />
+
+	<file src="images\radar\point.png" />
+	
+	<file src="images\skills\fishing\down.png" />
+	<file src="images\skills\fishing\top.png" />
+	
+	<file src="images\skills\bar.png" />
+	<file src="images\skills\bg.png" />
+	<file src="images\skills\cur.png" />
+	<file src="images\skills\px.png" />
+	
+	<file src="images/internet/ammunation.bmp"/>
+	<file src="images/internet/bg.png"/>
+	<!--- <file src="images/internet/bolt.png"/> --->
+	<!--- <file src="images/internet/cloud.png"/> --->
+	<file src="images/internet/email.png"/>
+	<file src="images/internet/eyefind.bmp" />
+	<file src="images/internet/bank.png"/>
+	<file src="images/internet/pizza.jpg"/>
+	<!--- <file src="images/internet/rain.png"/> --->
+	<file src="images/internet/sprunk.png"/>
+	<file src="images/internet/star.png"/>
+	<file src="images/internet/logout.png"/>
+	<!--- <file src="images/internet/sun.png" /> --->
+	<file src="images/internet/wang.png" />
+	
+	<file src="images/inventory/fishing/cought.png" />
+	<file src="images/inventory/fishing/hook.png" />
+	<file src="images/inventory/fishing/pole.png" />
+	<file src="images/inventory/fishing/worm.png" />
+	
+	<file src="images/inventory/aid.bmp" />
+	<file src="images/inventory/beer.bmp" />
+	<file src="images/inventory/benzin.bmp" />
+	<file src="images/inventory/binoculars.png" />
+	<file src="images/inventory/burger.bmp" />
+	<file src="images/inventory/chess.png" />
+	<file src="images/inventory/chip.png" />
+	<file src="images/inventory/cigaretts.bmp" />
+	<file src="images/inventory/dice.bmp" />
+	<file src="images/inventory/drugs.bmp" />
+	<file src="images/inventory/easteregg.bmp" />
+	<file src="images/inventory/fruit.bmp" />
+	<file src="images/inventory/gbc.bmp" />
+	<file src="images/inventory/horseshoe.png" />
+	<file src="images/inventory/liberty_tree.bmp" />
+	<file src="images/inventory/mats.bmp" />
+	<file src="images/inventory/orden_1.bmp" />
+	<file src="images/inventory/orden_2.bmp" />
+	<file src="images/inventory/orden_3.bmp" />
+	<file src="images/inventory/present.bmp" />
+	<file src="images/inventory/snack.bmp" />
+	<file src="images/inventory/special_ammo.bmp" />
+	<file src="images/inventory/suess.bmp" />
+	<file src="images/inventory/placeable/ball_a.png" />
+	<file src="images/inventory/placeable/ball_b.png" />
+	<file src="images/inventory/placeable/campfire.png" />
+	<file src="images/inventory/placeable/grill.png" />
+	<file src="images/inventory/placeable/hi_fi.png" />
+	<file src="images/inventory/placeable/liege.png" />
+	<file src="images/inventory/placeable/torch.png" />
+	<file src="images/inventory/placeable/towel.png" />
+	
+	<file src="images/tetris/black.bmp" />
+	<file src="images/tetris/white.bmp" />
+	<file src="images/tetris/blue.bmp" />
+	<file src="images/tetris/green.bmp" />
+	<file src="images/tetris/orange.bmp" />
+	<file src="images/tetris/red.bmp" />
+	<file src="images/tetris/yellow.bmp" />
+	<file src="images/tetris/left.bmp" />
+	<file src="images/tetris/right.bmp" />
+	
+	<file src="images/cards/bigblind.png" />
+	<file src="images/cards/smallblind.png" />
+	
+	<file src="images/cards/black/2_b.png" />
+	<file src="images/cards/black/3_b.png" />
+	<file src="images/cards/black/4_b.png" />
+	<file src="images/cards/black/5_b.png" />
+	<file src="images/cards/black/6_b.png" />
+	<file src="images/cards/black/7_b.png" />
+	<file src="images/cards/black/8_b.png" />
+	<file src="images/cards/black/9_b.png" />
+	<file src="images/cards/black/10_b.png" />
+	<file src="images/cards/black/a_b.png" />
+	<file src="images/cards/black/j_b.png" />
+	<file src="images/cards/black/q_b.png" />
+	<file src="images/cards/black/k_b.png" />
+	
+	<!--- <file src="images/cards/dices/1.png" />
+	<file src="images/cards/dices/2.png" />
+	<file src="images/cards/dices/3.png" />
+	<file src="images/cards/dices/4.png" />
+	<file src="images/cards/dices/5.png" />
+	<file src="images/cards/dices/6.png" />
+	<file src="images/cards/dices/arrow_down.png" />
+	<file src="images/cards/dices/arrow_up.png" />
+	<file src="images/cards/dices/unknown.png" />
+	<file src="images/cards/dices/lost.png" /> --->
+	
+	<file src="images/cards/red/2_r.png" />
+	<file src="images/cards/red/3_r.png" />
+	<file src="images/cards/red/4_r.png" />
+	<file src="images/cards/red/5_r.png" />
+	<file src="images/cards/red/6_r.png" />
+	<file src="images/cards/red/7_r.png" />
+	<file src="images/cards/red/8_r.png" />
+	<file src="images/cards/red/9_r.png" />
+	<file src="images/cards/red/10_r.png" />
+	<file src="images/cards/red/a_r.png" />
+	<file src="images/cards/red/j_r.png" />
+	<file src="images/cards/red/q_r.png" />
+	<file src="images/cards/red/k_r.png" />
+	<file src="images/cards/symbols/herz.png" />
+	<file src="images/cards/symbols/karo.png" />
+	<file src="images/cards/symbols/kreuz.png" />
+	<file src="images/cards/symbols/pik.png" />	
+	<file src="images/cards/images/back.png" />
+	<file src="images/cards/images/bg.png" />
+	<file src="images/cards/images/j.png" />
+	<file src="images/cards/images/k.png" />
+	<file src="images/cards/images/q.png" />
+
+	<file src="images/carsys/Background.png" />
+	<file src="images/carsys/Engine.png" />
+	<file src="images/carsys/Light.png" />
+	<file src="images/carsys/Nadel.png" />
+	<file src="images/carsys/Punkt.png" />
+	<file src="images/carsys/Tanknadel.png" />
+
+	<file src="images/hud/air.png" />
+      	<file src="images/hud/armour.png" />
+        	<file src="images/hud/flash.png" />
+        	<file src="images/hud/gloss.png" />
+        	<file src="images/hud/health.png" />
+        	<file src="images/hud/hunger.png" />
+
+	<file src="images/self/dock.png" />
+	<file src="images/self/achievments.png" />
+	<file src="images/self/admin.png" />
+	<file src="images/self/close.png" />
+	<file src="images/self/drugs.png" />
+	<file src="images/self/emotes.png" />
+	<file src="images/self/friendlist.png" />
+	<file src="images/self/handy.png" />
+	<file src="images/self/notes.png" />
+	<file src="images/self/settings.png" />
+	<file src="images/self/status.png" />
+	<file src="images/health.png" />
+	<file src="images/health_bar.png" />
+	<file src="images/armour.png" />
+	<file src="images/armour_bar.png" />
+	<file src="images/oxygen_bar.png" />
+	<file src="images/oxygen.png" />
+	<file src="images/clock.png" />	
+	<file src="images/weapon0.png" />
+	<file src="images/weapon1.png" />
+	<file src="images/weapon2.png" />
+	<file src="images/weapon3.png" />
+	<file src="images/weapon4.png" />
+	<file src="images/weapon5.png" />
+	<file src="images/weapon6.png" />
+	<file src="images/weapon7.png" />
+	<file src="images/weapon8.png" />
+	<file src="images/weapon9.png" />
+	<file src="images/weapon10.png" />
+	<file src="images/weapon11.png" />
+	<file src="images/weapon12.png" />
+	<file src="images/weapon14.png" />
+	<file src="images/weapon15.png" />
+	<file src="images/weapon16.png" />
+	<file src="images/weapon17.png" />
+	<file src="images/weapon18.png" />
+	<file src="images/weapon22.png" />
+	<file src="images/weapon23.png" />
+	<file src="images/weapon24.png" />
+	<file src="images/weapon25.png" />
+	<file src="images/weapon26.png" />
+	<file src="images/weapon27.png" />
+	<file src="images/weapon28.png" />
+	<file src="images/weapon29.png" />
+	<file src="images/weapon30.png" />
+	<file src="images/weapon31.png" />
+	<file src="images/weapon32.png" />
+	<file src="images/weapon33.png" />
+	<file src="images/weapon34.png" />
+	<file src="images/weapon35.png" />
+	<file src="images/weapon36.png" />
+	<file src="images/weapon37.png" />
+	<file src="images/weapon38.png" />
+	<file src="images/weapon39.png" />
+	<file src="images/weapon40.png" />
+	<file src="images/weapon41.png" />
+	<file src="images/weapon42.png" />
+	<file src="images/weapon43.png" />
+	<file src="images/weapon44.png" />
+	<file src="images/weapon45.png" />
+	<file src="images/weapon46.png" />
+	
+	
+	<file src="fonts/font1.ttf" />
+	<file src="fonts/font2.ttf" />
+	<file src="fonts/segoeui.ttf" />
+	<file src="fonts/DS-DIGI.ttf" />
+	
+	
+	<file src="fraktionen/biker/skins/wmycr.txd" />
+	<file src="fraktionen/biker/skins/bikera.txd" />
+	<file src="fraktionen/biker/skins/bikerb.txd" />
+	
+	<map src="schimpanse.map"/>
+	<!--- <map src="maps\army\alka_prison.map"/> --->
+	<map src="maps\army\army_base.map"/>
+	<map src="maps\army\ufo.map"/>
+	<!--- <map src="maps\bahnhof\hbfhaus.map"/> --->
+	<map src="maps\biker\base.map"/>
+	<map src="maps\biker\base2.map"/>
+	<map src="maps\drugjob\drugjob.map"/>
+	<map src="maps\drugjob\farm.map"/>
+	<map src="maps\else\adminhouses.map" />
+	<map src="maps\else\bank.map" />
+	<map src="maps\else\Bushaltestellen.map" />
+	<map src="maps\else\cashpoints.map" />
+	<map src="maps\else\deko.map" />
+	<map src="maps\else\internetcafe.map" />
+	<!--- <map src="maps\else\Kartarena.map" /> <!---
+	<map src="maps\else\safetytank.map" />
+	<map src="maps\else\hafen.map" />
+	<map src="maps\else\lkwjob.map" />
+	<!--- <map src="maps\else\xmas.map" /> --->
+	<map src="maps\fbi\fbi.map" />
+	<map src="maps\fbi\fbibase.map" />
+	<map src="maps\fishing\fishhabour.map" />
+	<map src="maps\fraktionen\medic\medic.map"/> --->
+	<map src="maps\fraktionen\mechaniker\mechaniker.map"/>
+	<!--- <map src="maps\fraktionen\mechaniker\abc.map"/> --->
+	<map src="maps\fun\racetrack_first.map" />
+	<map src="maps\fun\racetrack_second.map" />
+	<map src="maps\fun\boxarena.map" />
+	<map src="maps\los_aztecas\aztecas.map" />
+	<map src="maps\newsreporter\helipad.map" />
+	<map src="maps\mafia\mafia.map" />
+	<map src="maps\mafia\vincenzo.map" />
+	<map src="maps\starfish\starfish_island.map"/>
+	<map src="maps\sfpd\sfpd.map" />
+	<map src="maps\sfpd\prison.map" />
+	<map src="maps\terroristen\terrormap.map" />
+	<map src="maps\triaden\triaden.map" />
+	<map src="maps\triaden\triaden_casino.map" /> 
+
+	<!--- Buchstabe "A" --->
+	<script src="achievments\achievments_client.lua" type="client" />
+	<script src="ADuty\Server.lua" type="Server" />
+	<script src="achievments\achievments_server.lua" type="server" />
+	<script src="achievments\bonus_server.lua" />
+	<script src="achievments\horseshoes_server.lua" type="server" />
+	<script src="achievments\horseshoes_client.lua" type="client" />
+	<script src="achievments\packages_server.lua" type="server" />
+	<script src="achievments\packages_client.lua" type="client" />
+	
+	<script src="addict\settings_both.lua" type="client" />
+	<script src="addict\settings_both.lua" type="server" />
+	<script src="addict\client\effects_client.lua" type="client" />
+	<script src="addict\server\data_server.lua" />
+	<script src="addict\server\effects_server.lua" />
+	<script src="addict\server\use_server.lua" />
+	
+	<script src="admin\admincmds.lua"/>
+	<script src="admin\warns_server.lua" type="server" />
+	<script src="admin\adminlog.lua"/>
+	<script src="admin\playerlist.lua" type="client"/>
+	<script src="admin\vip_c.lua" type="client"/>
+	<script src="admin\vip_radio_c.lua" type="client"/>
+	<script src="admin\vip_radio_s.lua" />
+	<script src="admin\allround_log.lua" type="server" />
+	
+	<script src="anticheat\anticheat_client.lua" type="client" />
+	<script src="anticheat\anticheat_server.lua" />
+	<script src="anticheat\ban.lua" />
+	<script src="anticheat\shield_server.lua" />
+	<export function="banVioShieldPlayer" type="server"/>
+	
+	<script src="anzeigen\hud.lua" type="client"/>
+	<script src="anzeigen\infobox.lua" type="client"/>
+	<script src="anzeigen\newsbox.lua"/>
+	<script src="anzeigen\marker_client.lua" type="client"/>
+	<script src="anzeigen\marker_server.lua" type="server"/>
+	
+	<script src="anzeigen\prompt_client.lua" type="client"/>
+	<script src="anzeigen\prompt_server.lua" type="server"/>
+	
+	<!--- Buchstabe "B" --->	
+	<!--<script src="brand\brand.lua" />-->
+	
+	<script src="biz\biz.lua" />
+	<script src="biz\prestige.lua" />
+	
+	<map src="biz\sprunk\sprunk.map" />
+	
+	<script src="blips\imagelib.lua" type="client" />
+	<script src="blips\blipstreamer_client.lua" type="client" />
+	<script src="blips\customblips.lua" type="client" />
+	<script src="blips\utility.lua" type="client" />
+
+	<script src="bone_attach\bone_attach.lua" />
+	<script src="bone_attach\bone_attach_c.lua" type="client" />
+	<script src="bone_attach\attach_func.lua" />
+	<script src="bone_attach\attach_func.lua" type="client" />
+	<script src="bone_attach\bone_pos_rot.lua" type="client" />
+	
+	<!--- Buchstabe "C" --->
+	<script src="carsys\bikefalloff.lua" type="client"/>
+	<!--- <script src="carsys\blinker.lua" /> --->
+	
+	<script src="carsys\carcommands.lua" />
+	<script src="carsys\outsource_mysql.lua" />
+	
+	<script src="carsys\codriver\codriver_client.lua" type="client"/>
+	<script src="carsys\codriver\codriver_server.lua" />
+	
+	<script src="carsys\drivingschool\drivingschool_server.lua" />
+	<script src="carsys\drivingschool\drivingschool_client.lua" type="client"/>
+	
+	<script src="carsys\fuel\fuel.lua" />
+	<script src="carsys\fuel\tanke_client.lua" type="client"/>
+
+	<script src="carsys\heligrab\heli_c.lua" type="client" />
+	<script src="carsys\heligrab\heli_s.lua" type="server" />
+	<script src="carsys\heligrab\debug_s.lua" type="server" />
+	<script src="carsys\heligrab\debug_c.lua" type="client" />
+	<script src="carsys\heligrab\util.lua" type="client" />
+	<script src="carsys\heligrab\util.lua" type="server" />
+
+	<script src="carsys\michelles\client.lua" type="client" />
+	<script src="carsys\michelles\server.lua" />
+	
+	<script src="carsys\katjuscha\katjuscha_server.lua" />
+	<script src="carsys\katjuscha\katjuscha_client.lua" type="client"/>
+
+	<script src="carsys\tieferlegung\suspension_s.lua" type="server" />
+	<script src="carsys\tieferlegung\suspension_c.lua" type="client" />
+	<script src="carsys\tieferlegung\suspension_c_hud.lua" type="client" />
+	
+	<script src="carsys\tuning\engine_tuning_server.lua" type="server"/>
+	<script src="carsys\tuning\painting_client.lua" type="client"/>
+	<script src="carsys\tuning\paynspray.lua"/>
+	<script src="carsys\tuning\stuning_server.lua" />
+	<script src="carsys\tuning\tuning_client.lua" type="client"/>
+	<script src="carsys\tuning\tuning_server.lua" />
+	<script src="carsys\tuning\tuninglist_both.lua" />
+	<script src="carsys\tuning\tuninglist_both.lua" type="client"/>
+
+	
+	<script src="carsys\nos\nos_client.lua" type="client"/>
+	<script src="carsys\nos\nos_draw.lua" type="client"/>
+	<script src="carsys\nos\nos_server.lua" type="server"/>
+	
+	<script src="carsys\trailer\trailer_server.lua"/>
+	<script src="carsys\trailer\trailer_gui.lua" type="client" />
+	
+	<script src="carsys\cardestroy.lua" />
+	
+	<script src="carsys\carhouses\carbuy_allround.lua" />
+	<script src="carsys\carhouses\carhouses_client.lua" type="client"/>
+	<script src="carsys\carhouses\carhouses_mysql.lua" />
+	
+	<script src="carsys\shamal_server.lua" />
+	<script src="carsys\shamal_client.lua" type="client"/>
+	
+	<script src="carsys\cosight_client.lua" type="client" />
+	<script src="carsys\ghostcar_client.lua" type="client"/>
+	<script src="carsys\ghostcar_server.lua" type="server"/>
+	<script src="carsys\helimagnet.lua" />
+	<script src="carsys\helimagnet_client.lua" type="client" />
+	<script src="carsys\licenses\vehiclecheck.lua" />
+	<script src="carsys\licht_motor.lua" />
+	<script src="carsys\noobcars\noobcars.lua" />
+	<script src="carsys\radio.lua" type="client"/>
+	<script src="carsys\stuntcam_client.lua" type="client"/>
+	<script src="carsys\tacho\speedo.lua" type="client" />
+	<script src="carsys\tempomat.lua" type="client" />	
+	<script src="carsys\veh_dmg.lua" />	
+	<script src="carsys\carsys_mysql.lua" />
+
+	<script src="carsys\fahrzeugverleih\client.lua" type="client" /> 
+	<script src="carsys\fahrzeugverleih\server.lua" type="server" />
+
+	<script src="carsys\gps\classlib.lua" type="client" cache="false"/>		
+	<script src="carsys\gps\util.lua" type="client" cache="false"/>	
+	<script src="carsys\gps\dxUtil.lua" type="client" cache="false"/>				
+	<script src="carsys\gps\navi_c.lua" type="client" cache="false" />		
+	<script src="carsys\gps\nodes.lua" type="client" />		
+	<script src="carsys\gps\settings.lua" type="client" />
+	
+	<!--- Casino --->
+	<script src="casino\casino_client.lua" type="client" />
+	<script src="casino\casino_server.lua" type="server" />
+	
+	<script src="casino\cardgames\cardgames_utility.lua" type="server" />
+	<script src="casino\cardgames\cardgames_utility.lua" type="client" />
+			
+	<script src="casino\cardgames\blackjack\blackjack_server.lua" type="server" />
+	<script src="casino\cardgames\blackjack\blackjack_client.lua" type="client" />
+	<script src="casino\cardgames\blackjack\blackjack_both.lua" type="server" />
+	<script src="casino\cardgames\blackjack\blackjack_both.lua" type="client" />
+		
+	<!--- <script src="casino\liars_dice\liars_dice_client.lua" type="client" />
+	<script src="casino\liars_dice\liars_dice_server.lua" type="server" /> --->
+	
+	<!--- <script src="casino\cardgames\poker\poker_settings.lua" type="client" />
+	<script src="casino\cardgames\poker\poker_settings.lua" type="server" />
+	<script src="casino\cardgames\poker\poker_both.lua" type="client" />
+	<script src="casino\cardgames\poker\poker_both.lua" type="server" />
+	<script src="casino\cardgames\poker\poker_client.lua" type="client" />
+	<script src="casino\cardgames\poker\poker_gui_client.lua" type="client" />
+	<script src="casino\cardgames\poker\poker_server.lua" type="server" />
+	<script src="casino\cardgames\poker\poker_utility_server.lua" type="server" />
+	<script src="casino\cardgames\poker\poker_values.lua" type="client" />
+	<script src="casino\cardgames\poker\poker_values.lua" type="server" /> --->
+			
+	<script src="casino\buychips_server.lua" type="server" />
+	<script src="casino\buychips_gui.lua" type="client" />
+	<script src="casino\chips_client.lua" type="client" />
+	<script src="casino\teleporter_server.lua" type="server" />
+		
+	<script src="casino\roulett\roulett_client.lua" type="client" />
+	<script src="casino\roulett\roulett_draw.lua" type="client" />
+	<script src="casino\roulett\roulett_gui.lua" type="client" />
+	<script src="casino\roulett\roulett_server.lua" type="server" />
+			
+	<script src="casino\slotmachine\slotmachine_client.lua" type="client" />
+	<script src="casino\slotmachine\slotmachine_server.lua" type="server" />
+			
+	<!--- Clicksystem --->
+	<script src="clicksys\click_server.lua" />
+	<script src="clicksys\geld_server.lua" />
+	<script src="clicksys\rathaus_server.lua" />
+				
+	<script src="clicksys\playerclick\achievments_click.lua" type="client" />
+	<script src="clicksys\playerclick\addict_click.lua" type="client" />
+	<script src="clicksys\playerclick\army_click.lua" type="client" />
+	<script src="clicksys\playerclick\baumarkt_click.lua" type="client" />
+	<script src="clicksys\playerclick\bonus_click.lua" type="client" />
+	<script src="clicksys\playerclick\car_click.lua" type="client" />
+	<script src="clicksys\playerclick\cashpoint_click.lua" type="client" />
+	<script src="clicksys\playerclick\drugdealer_click.lua" type="client" />
+	<script src="clicksys\playerclick\fdepot_click.lua" type="client" />
+	<script src="clicksys\playerclick\fraktion_click.lua" type="client" />
+	<script src="clicksys\playerclick\fschein_click.lua" type="client" />
+	<script src="clicksys\playerclick\handy_click.lua" type="client" />
+	<script src="clicksys\playerclick\hotdog_click.lua" type="client" />
+	<script src="clicksys\playerclick\house_click.lua" type="client" />
+	<script src="clicksys\playerclick\job_click.lua" type="client" />
+	<script src="clicksys\playerclick\options_click.lua" type="client" />
+	<script src="clicksys\playerclick\ped_click.lua" type="client" />
+	<script src="clicksys\playerclick\player_click.lua" type="client" />
+	<script src="clicksys\playerclick\policecomputer_click.lua" type="client" />
+	<script src="clicksys\playerclick\radio_click.lua" type="client" />
+	<script src="clicksys\playerclick\rathaus_click.lua" type="client" />
+	<script src="clicksys\playerclick\self_click.lua" type="client" />
+	<script src="clicksys\playerclick\stats_click.lua" type="client" />
+	<script src="clicksys\playerclick\spawnselection_click.lua" type="client" />
+	<script src="clicksys\playerclick\trunk_click.lua" type="client" />
+	<script src="clicksys\playerclick\wdealer_click.lua" type="client" />
+	<config src="help.xml" type="client"/>
+
+	<!--- Client --->
+	<script src="client\antifastshot_client.lua" type="client" />
+	<script src="client\commands_client.lua" type="client" />
+	<script src="client\customradio_client.lua" type="client" />
+	<script src="client\deathbar_client.lua" type="client" />
+	<script src="client\ego_client.lua" type="client" />
+	<script src="client\godmode_client.lua" type="client" />
+	<script src="client\head_client.lua" type="client" />
+	<script src="client\hunger_client.lua" type="client" />
+	<script src="client\idcheck_client.lua" type="client" />
+	<script src="client\jailfix_client.lua" type="client" />
+	<script src="client\laufen.lua" type="client" />
+	<script src="client\lookout_client.lua" type="client" />
+	<script src="client\nametag_client.lua" type="client" />
+	<script src="client\playerlist_client.lua" type="client" />
+	<script src="client\sprunk_client.lua" type="client" />
+	<script src="client\statement_client.lua" type="client" />
+			
+	<!--- Clothes --->
+	<script src="clothes\clothes_server.lua" />
+	<script src="clothes\clothes_settings_both.lua" type="client" />
+	<script src="clothes\clothes_settings_both.lua" type="server" />
+	<script src="clothes\clothes_client.lua" type="client" />
+	
+	<!--- CMDs --->
+	<script src="cmds\accept_server.lua" type="server" />
+	<script src="cmds\create_server.lua" type="server" />
+	<script src="cmds\take_server.lua" type="server" />
+	
+	<!--- Buchstabe "D" --->
+	<!--<script src="driving\driving_client.lua" type="client" />
+	<script src="driving\driving_server.lua" />
+	<script src="driving\routes.lua" type="client" />
+	<script src="driving\routes.lua" />
+	<script src="driving\taxi\taxi_gui.lua" type="client" />-->
+	
+	<!--- Buchstabe "E" --->
+	<script src="environment\afk.lua" />
+	<script src="environment\animations_client.lua" type="client" />
+	<script src="environment\animations_server.lua" />
+	<script src="environment\camfix_client.lua" type="client"/>
+	<script src="environment\commandspam_server.lua" />
+	<script src="environment\chat.lua" />
+	<script src="environment\death.lua" />
+	<script src="environment\drop.lua" />
+	<script src="environment\greenzone\client.lua" type="client" />
+	<script src="environment\namechange.lua" />
+	<script src="environment\playerspawn.lua" />
+	<script src="environment\realtime.lua" />
+	<script src="environment\signs_client.lua" type="client" />
+	<script src="environment\spawn.lua" />
+	<script src="environment\weather.lua" />
+	<script src="environment\worldobjects.lua" />
+	
+	<!--- <script src="events\easter_client.lua" type="client" /> --->
+	<script src="events\easter_server.lua" type="server" />
+	<script src="events\halloween_intro_client.lua" type="client" />
+	<script src="events\halloween_intro_server.lua" type="server" />
+	<script src="events\zombie_plugin_server.lua" type="server" />
+	<export function="addPlayerPumpkins" type="server"/>
+	
+	<!--- Buchstabe "F" --->
+	<script src="fraktionen\allround.lua" />
+	<script src="fraktionen\blacklist_client.lua" type="client" />
+	<script src="fraktionen\blacklist_server.lua" />
+	<script src="fraktionen\chat.lua" />
+	<script src="fraktionen\gangareas.lua" />
+	<script src="fraktionen\gangwaranzeige.lua" type="client" />
+	<script src="fraktionen\fdepots.lua" />
+	<script src="fraktionen\fguns_client.lua" type="client" />
+	<script src="fraktionen\nails_server.lua" type="server" />
+	<script src="fraktionen\spawnpoints_server.lua" />
+	<script src="fraktionen\teleporters_server.lua" />
+	<script src="fraktionen\sfpd\need.lua" />
+	
+	<map src="fraktionen\grove\Grove-SF.map" />
+	<!--<map src="fraktionen\grove\Grove-street.map" />-->
+	<script src="fraktionen\grove\grove_cars.lua" />
+	<script src="fraktionen\grove\grove_cars_sf.lua" />
+	<script src="fraktionen\grove\grove_gate.lua" />
+	
+	<map src="maps\ballas\ballasbase.map" />
+	<script src="fraktionen\ballas\ballas_gate.lua" />
+	<script src="fraktionen\ballas\ballas_vehicles.lua" />
+	
+	<script src="fraktionen\barricades_server.lua" />
+	<script src="fraktionen\barricades_client.lua" type="client"/>
+	
+	<script src="fraktionen\army\airstrike_server.lua" />
+	<script src="fraktionen\army\airstrike_client.lua" type="client"/>
+	<script src="fraktionen\army\army_cars.lua" />
+	<script src="fraktionen\army\army_func.lua" />
+	<script src="fraktionen\army\army_gate.lua" />
+	<script src="fraktionen\army\army_refire.lua" type="client"/>
+	<script src="fraktionen\army\ac_130_client.lua" type="client"/>
+	<script src="fraktionen\army\ac_130_server.lua" type="server"/>
+	
+	<script src="fraktionen\army\warroom\client.lua" type="client"/>
+	<script src="fraktionen\army\warroom\server.lua"/>
+	
+	<script src="fraktionen\aztecas\aztecas_client.lua" type="client"/>
+	<script src="fraktionen\aztecas\aztecas_gate.lua" type="server" />
+	<script src="fraktionen\aztecas\aztecas_vehicles.lua" type="server" />
+	<script src="fraktionen\aztecas\aztecas_ranch.lua" type="server" />
+	
+	<script src="fraktionen\biker\formation_server.lua" type="server" />
+	<script src="fraktionen\biker\formation_client.lua" type="client" />
+	<script src="fraktionen\biker\freeway_client.lua" type="client" />
+	<script src="fraktionen\biker\gui_client.lua" type="client" />
+	<script src="fraktionen\biker\models_client.lua" type="client" />
+	<script src="fraktionen\biker\teleport_server.lua" type="server" />
+	<script src="fraktionen\biker\vehicles_server.lua" type="server" />
+	
+	<script src="fraktionen\fbi\fbi_cars.lua" />
+	<script src="fraktionen\fbi\fbi_funcs.lua" />
+	<script src="fraktionen\fbi\fbi_gate.lua" />
+	<script src="fraktionen\fbi\fbi_settings.lua" />
+	<script src="fraktionen\fbi\fbi_teleporter.lua" />
+	
+	<script src="fraktionen\lvpd\duty_server.lua" type="server" />
+	<script src="fraktionen\lvpd\gate_server.lua" type="server" />
+	<script src="fraktionen\lvpd\teleporter_server.lua" type="server" />
+
+	<script src="fraktionen\lspd\duty_server.lua" type="server" />
+	<script src="fraktionen\lspd\gate_server.lua" type="server" />
+	<script src="fraktionen\lspd\teleporter_server.lua" type="server" />
+
+	<script src="fraktionen\medic\medic_client.lua" type="client" />
+	<script src="fraktionen\medic\medic_cars.lua" />
+	<script src="fraktionen\medic\medic_lift.lua" />
+	<script src="fraktionen\medic\medic_server.lua" />
+
+	<script src="fraktionen\mechaniker\mechaniker_func_server.lua" />
+	<script src="fraktionen\mechaniker\mechaniker_func_client.lua" type="client" />
+	<script src="fraktionen\mechaniker\mechaniker_cars.lua" />
+	<script src="fraktionen\mechaniker\mechaniker_gate.lua" />
+	<script src="fraktionen\mechaniker\mechaniker_server.lua" />
+	
+	<script src="fraktionen\newsreporter\newspaper_client.lua" type="client" />
+	<script src="fraktionen\newsreporter\newspaper_server.lua" />
+	<script src="fraktionen\newsreporter\reporter_func.lua" />
+	<script src="fraktionen\newsreporter\reporter_gate.lua" />
+	<script src="fraktionen\newsreporter\reporter_vehicles.lua" />
+	
+	<script src="fraktionen\mafia\mafiacars.lua" />
+	<script src="fraktionen\mafia\mafia_gate.lua" />
+	
+	
+	<script src="fraktionen\sfpd\copcars.lua" />
+	<script src="fraktionen\sfpd\functions.lua" />
+	<script src="fraktionen\sfpd\radarfalle.lua" />
+	<script src="fraktionen\sfpd\sfpd_gate.lua" />
+	<script src="fraktionen\sfpd\tazer.lua" />
+	
+	<script src="fraktionen\state\arrest_server.lua" type="server" />
+	
+	<script src="fraktionen\terroristen\terror_cars.lua" />
+	<script src="fraktionen\terroristen\terror_funcs.lua" />
+	<script src="fraktionen\terroristen\terror_gate.lua" />
+	
+	<script src="fraktionen\triaden\triaden_client.lua" type="client" />
+	<script src="fraktionen\triaden\triaden_gate.lua" />
+	<script src="fraktionen\triaden\triaden_teleporters.lua" />
+	<script src="fraktionen\triaden\triaden_vehicles.lua" />
+	
+	<script src="friendlist\friendlist_client.lua" type="client"/>
+	<script src="friendlist\friendlist_server.lua"/>
+	
+	<script src="food\pizzastack.lua" />
+	<script src="food\burgershot\burgershot_client.lua" type="client"/>
+	<script src="food\burgershot\burgershot_server.lua" />
+	
+	<script src="fun\bankrob\bankrob_server.lua" type="server" />
+	<script src="fun\bankrob\bankrob_client.lua" type="client" />
+	
+	<script src="fun\bars\bar_gui.lua" type="client" />
+	<script src="fun\bars\bar_server.lua" />
+	<script src="fun\bars\bar_settings.lua" />
+	<script src="fun\bars\bar_settings.lua" type="client" />
+	
+	<script src="fun\boxarena\boxen.lua" />
+	<script src="fun\boxer\client.lua" type="client" />
+	<script src="fun\boxer\server.lua" />
+	
+	<script src="fun\carrob\carrob.lua" type="server" />
+
+	<script src="fun\casinorob\casinorob_client.lua" type="client" />
+	<script src="fun\casinorob\casinorob_server.lua" type="server" />
+	
+	<script src="fun\coinshop\client.lua" type="client" />
+	<script src="fun\coinshop\server.lua" type="server" />
+	
+	<script src="fun\atomtruck\AT_Server.lua"type="server" />
+	<script src="fun\atomtruck\AT_Client.lua"type="client" />
+
+	<script src="fun\drogentruck\drogentruck_server.lua" />
+
+	<script src="fun\geldtruck\geldtruck.lua" />
+	
+
+	
+	<script src="fun\lotto\lotto_client.lua" type="client" />
+	<script src="fun\lotto\lotto_server.lua" type="server" />
+
+	<script src="fun\matstruck\matstruck_server.lua" />
+	
+	<script src="fun\president\client.lua" type="client" />
+	<script src="fun\president\konvoi_server.lua" type="server" />
+	<script src="fun\president\geiselnahme_server.lua" type="server" />
+	
+	<script src="fun\race\race_gui.lua" type="client" />
+	<script src="fun\race\first\race_client.lua" type="client" />
+	<script src="fun\race\first\race_server.lua" />
+	<script src="fun\race\second\race_client.lua" type="client" />
+	<script src="fun\race\second\race_server.lua" />
+	
+	<script src="fun\shootingranch\shootingranch_both.lua" type="client" />
+	<script src="fun\shootingranch\shootingranch_both.lua" type="server" />
+	<script src="fun\shootingranch\shootingranch_client.lua" type="client" />
+	<script src="fun\shootingranch\shootingranch_server.lua" type="server" />
+	
+	<script src="fun\skydive\skydive.lua" />
+	<script src="fun\stripclub\pets.lua" />
+	<script src="fun\stripclub\teleporter.lua" />
+
+	<script src="fun\ueberfall\server.lua" />
+	
+	<!--- Buchstabe "G" --->
+	<script src="gangs\gangs_client.lua" type="client"/>
+	<script src="gangs\gangs_gui_client.lua" type="client"/>
+	<script src="gangs\gangs_gui_server.lua" type="server"/>
+	<script src="gangs\gangs_mysql.lua" type="server"/>
+	<script src="gangs\gangs_server.lua" type="server"/>
+	<script src="gangs\gangs_settings.lua" type="client"/>
+	<script src="gangs\gangs_settings.lua" type="server"/>
+	<!--- s.h. unter "H" -->
+	
+	<script src="guns\dmgsys_server.lua" />
+	
+	<script src="guns\firemode_client.lua" type="client"/>
+
+	<script src="guns\guncrate_client.lua" type="client"/>
+	<script src="guns\guncrate_server.lua" />
+	
+	<script src="guns\guns_client.lua" type="client"/>
+	
+	<script src="guns\helidb_client.lua" type="client"/>
+	<script src="guns\helidb_server.lua" />
+	
+	<script src="guns\knife_client.lua" type="client"/>
+	
+	<script src="guns\misfire_client.lua" type="client"/>
+	<script src="guns\misfire_server.lua" type="server"/>
+	
+	<script src="guns\refiredelay_client.lua" type="client" />
+	<script src="guns\running_weapons_client.lua" type="client" />
+	
+	<script src="guns\reload\reload_server.lua" />
+	<script src="guns\reload\reload_client.lua" type="client" />
+	
+	<!--- Buchstabe "H" --->	
+	<script src="helpmenue\helpmenue_client.lua" type="client"/>
+	
+	<script src="hobby\allround.lua" />
+	<script src="hobby\bikerclub\bikerbar_server.lua" />
+	
+	<script src="hobby\bikerclub\bikerbar_gui.lua" type="client"/>
+	<script src="hobby\fishing\fishing_client.lua" type="client"/>
+	<script src="hobby\fishing\fishing_server.lua" type="server"/>
+	
+	<script src="hobby\gardenclub\gardenclub_client.lua" type="client"/>
+	<script src="hobby\gardenclub\gardenclub_server.lua" type="server"/>
+
+	
+	<script src="hobby\rcclub\rc_client.lua" type="client" />
+	<script src="hobby\rcclub\rc_server.lua" type="server" />
+	
+	<script src="housesys\hotel.lua" />
+	<script src="housesys\housebuy.lua" />
+	<script src="housesys\housecmds.lua" />
+	<script src="housesys\houseints.lua" />
+	<script src="housesys\houses_client.lua" type="client" />
+	<script src="housesys\houses_mysql.lua" />
+	
+	<!--- <script src="gangs\gangs_server.lua" type="server"/> --->
+	
+	<!--- Buchstabe "I" --->
+	<script src="internet\desktop_client.lua" type="client"/>
+	<script src="internet\email_client.lua" type="client"/>
+	<script src="internet\email_server.lua" />
+	<script src="internet\internet_cafe_client.lua" type="client"/>
+	<script src="internet\internet_cafe_server.lua" />
+	<script src="internet\webbrowser.lua" type="client"/>
+	
+	<script src="internet\homepages_client\domaneRecieves.lua" type="client"/>
+	<script src="internet\homepages_client\404.lua" type="client"/>
+	<script src="internet\homepages_client\ammunation.lua" type="client"/>
+	<script src="internet\homepages_client\arbeitsamt.lua" type="client"/>
+	<script src="internet\homepages_client\bank.lua" type="client"/>
+	<script src="internet\homepages_client\bundeswehr.lua" type="client"/>
+	<script src="internet\homepages_client\chat.lua" type="client"/>
+	<script src="internet\homepages_client\eyefind.lua" type="client"/>
+	<script src="internet\homepages_client\fbi.lua" type="client"/>
+	<script src="internet\homepages_client\jizzy.lua" type="client"/>
+	<script src="internet\homepages_client\ltr.lua" type="client"/>
+	<script src="internet\homepages_client\mafia.lua" type="client"/>
+	<script src="internet\homepages_client\pizza.lua" type="client"/>
+	<script src="internet\homepages_client\sfpd.lua" type="client"/>
+	<script src="internet\homepages_client\sprunk.lua" type="client"/>
+	<script src="internet\homepages_client\triaden.lua" type="client"/>
+	<script src="internet\homepages_client\wang.lua" type="client"/>
+	<!--- <script src="internet\homepages_client\wetter.lua" type="client"/> --->
+	
+	<!--- <script src="internet\homepages_client\buyit.com\buyit_buy.lua" type="client"/>
+	<script src="internet\homepages_client\buyit.com\buyit_main.lua" type="client"/>
+	<script src="internet\homepages_client\buyit.com\buyit_sell.lua" type="client"/> --->
+	
+	<script src="internet\homepages_server\ammunation_server.lua" />
+	<script src="internet\homepages_server\buyit_functions.lua" />
+	<script src="internet\homepages_server\buyit_server.lua" />
+	<script src="internet\homepages_server\chat_server.lua" />
+	<script src="internet\homepages_server\pizza_server.lua" />
+	
+	<script src="items\inventory_click.lua" type="client"/>
+	<script src="items\items_geben_click.lua" type="client"/>
+	<script src="items\items_place_client.lua" type="client"/>
+	<script src="items\items_place_server.lua" />
+	<script src="items\items_server.lua" />
+	
+	<!--- Buchstabe "J" --->
+	<script src="jobs\allround.lua"/>
+	<script src="jobs\handy_server.lua"/>
+	<script src="jobs\payday.lua"/>
+	<script src="jobs\paylog.lua"/>
+	
+	<script src="jobs\airport\airport_gui.lua" type="client"/>
+	<script src="jobs\airport\airport_server.lua" type="server"/>
+	
+	<script src="jobs\bauarbeiter\bauarbeiter_client.lua" type="client"/>
+	<script src="jobs\bauarbeiter\bauarbeiter_gui.lua" type="client"/>
+	<script src="jobs\bauarbeiter\bauarbeiter_server.lua" type="server"/>
+
+	<script src="jobs\bus\Busfahrer.lua" type="server"/>
+	<map src="jobs\bus\Bushaltestellen.map" />
+	
+	<script src="jobs\waffendealer\wdealer_job.lua" />
+	
+	<script src="jobs\drugs\drugs_server.lua"/>
+	<script src="jobs\drugs\drugs_client.lua" type="client"/>
+	
+	<script src="jobs\farmer\farmer_client.lua" type="client"/>
+	<script src="jobs\farmer\farmer_gui.lua" type="client"/>
+	<script src="jobs\farmer\farmer_server.lua" type="server"/>
+	
+	<script src="jobs\fischer\fischer.lua"/>
+	<script src="jobs\fischer\fischertour.lua" type="client" />
+	
+	<script src="jobs\hitman\hitman_funcs.lua" />
+	<script src="jobs\hotdog\hotdog_server.lua" />
+	
+	<script src="jobs\taxi\taxi_server.lua" type="server" />
+	<script src="jobs\taxi\taxi_client.lua" type="client" />
+
+	<script src="jobs\tramjob\client.lua" type="client" />
+	<script src="jobs\tramjob\server.lua" />
+
+	<script src="jobs\trash\trash_client.lua" type="client" />
+	<script src="jobs\trash\trash_server.lua" />
+	
+	<script src="jobs\trucker\trucker_both.lua" type="client" />
+	<script src="jobs\trucker\trucker_both.lua" type="server" />
+	<script src="jobs\trucker\trucker_client.lua" type="client" />
+	<script src="jobs\trucker\trucker_server.lua" type="server" />
+
+	<script src="jobs\zugjob\client.lua" type="client" />
+	<script src="jobs\zugjob\server.lua" type="server" />
+	
+	
+	<!---Buchstabe "M" --->
+	<script src="minigames/tetris/classes_client.lua" type="client" />
+	<script src="minigames/tetris/tetris_server.lua" type="server" />
+	<script src="minigames/tetris/tetris_client.lua" type="client" />
+	
+	<script src="fun/Museumraub/Client.lua" type="client" />
+	<script src="fun/Museumraub/Server.lua" type="server" />
+	
+	
+	<script src="minigames\chess\chess_settings.lua" type="client" />
+	<script src="minigames\chess\chess_settings.lua" type="server" />
+	<script src="minigames\chess\chess_client.lua" type="client" />
+	<script src="minigames\chess\chess_draw.lua" type="client" />
+	<script src="minigames\chess\chess_server.lua" type="server" />
+	<script src="minigames\chess\language.lua" type="client" />
+	<script src="minigames\chess\language.lua" type="server" />
+	
+	<script src="missions\area51\area51ai\area51_server.lua" />
+	<script src="missions\area51\area51ai\area51_ai_client.lua" type="client"/>
+	<script src="missions\area51\area51ai\area51_ai_genfuncs_client.lua" type="client"/>
+	<script src="missions\area51\thetruth_area51_mission.lua" type="client" />
+	
+	<!--- <script src="missions\zombie\zombie_client.lua" type="client" />
+	<script src="missions\zombie\zombie_ki.lua" />
+	<script src="missions\zombie\zombie_settings.lua" />
+	<script src="missions\zombie\zombie_start.lua" /> --->
+	
+	<script src="mysql\mysql_pm.lua"/>
+	
+	<!--- Buchstabe "P" --->
+	<script src="peds\ped_animations.lua" type="server" />
+	
+	<script src="places\icons.lua" type="server" />
+	<script src="places\mafia\mafia.lua" type="server" />
+	<script src="places\disco\disco.lua" type="server" />
+	<script src="places\outdoor\bankautomaten.lua" type="server" />
+	<script src="places\rathaus\rathaus.lua" type="server" />
+	<script src="places\sfpd\sfpd.lua" type="server" />
+	
+	<script src="prison\marker_server.lua" type="server" />
+	<script src="prison\schleusen_server.lua" type="server" />
+	<script src="prison\cell_a_server.lua" type="server" />
+	<script src="prison\cell_b_server.lua" type="server" />
+	<script src="prison\cell_c_server.lua" type="server" />
+	<script src="prison\cell_d_server.lua" type="server" />
+	<script src="prison\cell_e_server.lua" type="server" />
+	<script src="prison\arrest_server.lua" type="server" />
+	
+	<!--- Buchstabe "R" --->
+	<script src="race\settings_both.lua" type="client" />
+	<script src="race\settings_both.lua" type="server" />
+	<script src="race\race_client.lua" type="client" />
+	<script src="race\race_server.lua" type="server" />
+	
+	<script src="register_login\account.lua" />
+	<script src="register_login\camflight_client.lua" type="client" />
+	<script src="register_login\loggedin_mysql.lua" type="server" />
+	<script src="register_login\login_window.lua" type="client"/>
+	<script src="register_login\register_login_server.lua" />
+	<script src="register_login\register_window.lua" type="client"/>
+	<script src="register_login\premium.lua" />
+	<script src="register_login\serial_validator.lua" />
+	<script src="register_login\tutorial_client.lua" type="client" cache="false"/>
+		
+	<!--- Buchstabe "S" --->
+	<script src="shops\24-7\24-7_server.lua" />
+	<script src="shops\24-7\24-7_client.lua" type="client" />
+	
+	<script src="skills\skills_both.lua" type="client" />
+	<script src="skills\skills_both.lua" type="server" />
+	<script src="skills\skills_client.lua" type="client" />
+	<script src="skills\skills_data_server.lua" type="server" />
+	<script src="skills\skills_server.lua" type="server" />
+	
+	<script src="shops\gunshop\gunshop_client.lua" type="client"/>
+	<script src="shops\gunshop\gunshop_server.lua" />
+	
+	<script src="shops\import\import_client.lua" type="client" />
+	<script src="shops\import\import_server.lua" type="server" />
+	
+	<script src="shops\rusty_brown\rusty_brown_client.lua" type="client" />
+	<script src="shops\rusty_brown\rusty_brown_server.lua" type="server" />
+	
+	<script src="shops\xxxshop\xxx_gui.lua" type="client" />
+	<script src="shops\xxxshop\xxx_settings.lua" type="client" />
+	<script src="shops\xxxshop\xxx_settings.lua" type="server" />
+	<script src="shops\xxxshop\xxx_server.lua" type="server" />
+	
+	<script src="social\social_client.lua" type="client" />
+	<script src="social\social_gui.lua" type="client" />
+	
+	<script src="sounds\sounds_client.lua" type="client" />
+	
+	<script src="support\support_client.lua" type="client" />
+	<script src="support\support_server.lua" type="server" />
+	
+	<!--- Buchstabe "T" --->	
+
+	<script src="ticketsystem\Ticketclient.lua" type="client" />
+	<script src="ticketsystem\Ticketserver.lua" />
+
+	<!---<script src="trains\trams.lua" /> --->
+	
+	<script src="tutorial\tutorial_ai_client.lua" type="client"/>
+	<script src="tutorial\tutorial_bubble_client.lua" type="client"/>
+	<script src="tutorial\tutorial_interactive_client.lua" type="client"/>
+	<script src="tutorial\tutorial_cam_client.lua" type="client"/>
+	<script src="tutorial\tutorial_client.lua" type="client"/>
+	<script src="tutorial\tutorial_server.lua" type="server"/>
+	<map src="tutorial\tutorial_map_client.map" type="client"/>
+	
+	<!--- Buchstabe "V" --->
+	<script src="vio_gui\ring_menue_client.lua" type="client" />
+	<script src="vio_gui\vio_gui_server.lua" type="server" />
+	<file src="vio_gui\cursor.png" />
+	
+	<!--- Bottomsettings --->
+	<script src="clicksys\clicksys_client.lua" type="client" />
+	<script src="clicksys\clicksys_server.lua" />
+	
+	<export function="infobox" type="server"/>
+	<export function="vioGetElementData" type="server"/>
+	<export function="vioSetElementData" type="server"/>
+
+	
+	<!-- Shader !ACHTUNG! immer zum Schluss --->
+	<script src="shader_panel/c_sPanel.lua" type="client" />
+	<script src="shader_panel/c_sPanel_gui.lua" type="client" />
+	<script src="shader_panel/c_rtpool.lua" type="client" />
+	<config src="shader_panel/default_settings.xml" type="client" />
+	<file src="shaders/addPalette.fx" type="client" />
+	<file src="shaders/NoParkShader.fx" type="client" />
+	<file src="shaders/brightness.fx" type="client" />
+    <file src="shaders/brightPass.fx" type="client" />
+	<file src="shaders/addBlend.fx" type="client" />
+	<file src="shaders/blurH.fx" type="client" />
+	<file src="shaders/blurV.fx" type="client" />
+	<file src="shaders/dBlurH.fx" type="client" />
+	<file src="shaders/dBlurV.fx" type="client" />
+	<file src="shaders/mta-helper.fx" type="client" />
+	<file src="shaders/car_paint.fx" type="client" />
+	<file src="shaders/car_refgrun.fx" type="client" />
+	<file src="shaders/car_refgrunL.fx" type="client" />
+	<file src="shaders/car_refgene.fx" type="client" />
+	<file src="shaders/water.fx" type="client" />
+	<file src="shaders/water_ref.fx" type="client" />
+	<file src="images/smallnoise3d.dds" type="client" />
+	<file src="images/cube_env256.dds" type="client" />
+	<file src="images/cube_veh256.dds" type="client" />
+	<file src="images/vignette1.dds" type="client" />
+	<file src="shaders/bloom_combine.fx" type="client" />
+	<file src="shaders/bloom_extract.fx" type="client" />
+	<file src="shaders/contrast.fx" type="client" />
+	<file src="shaders/modulation.fx" type="client" />
+	<file src="palettes/enbpalette1.png" type="client" />
+	<file src="palettes/enbpalette2.png" type="client" />
+	<file src="palettes/enbpalette3.png" type="client" />
+	<file src="palettes/enbpalette4.png" type="client" />
+	<file src="palettes/enbpalette5.png" type="client" />
+	<file src="palettes/enbpalette6.png" type="client" />
+	<file src="palettes/enbpalette7.png" type="client" />
+	<file src="palettes/enbpalette8.png" type="client" />
+	<file src="palettes/enbpalette9.png" type="client" />
+	<file src="palettes/enbpalette10.png" type="client" />
+</meta>

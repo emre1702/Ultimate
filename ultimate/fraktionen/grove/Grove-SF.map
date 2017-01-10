@@ -1,0 +1,9 @@
+<map edf:definitions="editor_main">
+    <object id="object (des_quarrygate2) (1)" breakable="true" interior="0" alpha="255" model="3050" doublesided="false" scale="1" dimension="0" posX="-2491.2" posY="-121.8" posZ="26.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (des_quarrygate2) (2)" breakable="true" interior="0" alpha="255" model="3050" doublesided="false" scale="1" dimension="0" posX="-2491.3" posY="-131.89999" posZ="26.9" rotX="0" rotY="0" rotZ="90"></object>
+    <removeWorldObject id="removeWorldObject (dump1) (1)" radius="3.5940819" interior="0" model="1227" lodModel="0" posX="-2456.0454" posY="-137.71938" posZ="26.36393" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (dump1) (2)" radius="3.5940819" interior="0" model="1227" lodModel="0" posX="-2456.0618" posY="-143.23653" posZ="26.34188" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <object id="object (tall_fence) (1)" breakable="true" interior="0" alpha="255" model="974" doublesided="false" scale="1" dimension="0" posX="-2431.2" posY="-164.10001" posZ="37.1" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (tall_fence) (2)" breakable="true" interior="0" alpha="255" model="974" doublesided="false" scale="1" dimension="0" posX="-2471" posY="-164.2" posZ="27.4" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (tall_fence) (3)" breakable="true" interior="0" alpha="255" model="974" doublesided="false" scale="1" dimension="0" posX="-2471" posY="-157.60001" posZ="27.4" rotX="0" rotY="0" rotZ="90"></object>
+</map>

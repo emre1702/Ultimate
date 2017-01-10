@@ -9,7 +9,7 @@ local vehicles = {}
 local choicegui = {}
 local screenX, screenY = guiGetScreenSize()
 local progress = 0
-local safetyquestion = false
+local safetyquestion = nil
 local registersound = nil
 
 
@@ -164,9 +164,9 @@ function showIfYouWantTut ( )
 	end
 	if progress >= 1150 then
 		local xm = getCursorPosition()
-		dxDrawText ( xm < 0.5 and "Nein" or "Ja", 0, screenY*0.05, screenX, screenY*0.1, tocolor ( 255, 255, 255 ), 3, "default", "center", "center", false, false, true )
-		dxDrawRectangle ( 0, 0, 0.5*screenX, screenY, tocolor ( 255, 0, 0, 5 ), false )
-		dxDrawRectangle ( 0.5*screenX, 0, screenX, screenY, tocolor ( 0, 255, 0, 5 ), false )
+		dxDrawText ( xm < 0.5 and "Ja" or "Nein", 0, screenY*0.05, screenX, screenY*0.1, tocolor ( 255, 255, 255 ), 3, "default", "center", "center", false, false, true )
+		dxDrawRectangle ( 0, 0, 0.5*screenX, screenY, tocolor ( 0, 255, 0, 5 ), false )
+		dxDrawRectangle ( 0.5*screenX, 0, screenX, screenY, tocolor ( 255, 0, 0, 5 ), false )
 	end
 	dxDrawText ( text, xScreen+1, yScreen, xScreen+1, yScreen, tocolor ( 0, 0, 0 ), 3, "default", "center", "center", false, false, true )
 	dxDrawText ( text, xScreen+1, yScreen+1, xScreen+1, yScreen+1, tocolor ( 0, 0, 0 ), 3, "default", "center", "center", false, false, true )
@@ -179,15 +179,21 @@ end
 function clickOnTutChoice ( button, state, x, y )
 	if button == "left" and state == "up" then
 		if x < screenX*0.5 then
-			if not safetyquestion then
-				safetyquestion = true
-				return
+			if safetyquestion == 1 then
+				showTutorialImportantPlaces()
+			elseif safetyquestion == 2 then
+				setTimer ( endtutorial, 2000, 1 )
+				fadeCamera ( false )
+			else
+				safetyquestion = 1
 			end
-		elseif safetyquestion then
-			setTimer ( endtutorial, 2000, 1 )
-			fadeCamera ( false )
 		else
-			showTutorialImportantPlaces()
+			if safetyquestion then
+				safetyquestion = nil
+			else
+				safetyquestion = 2 
+			end
+			return 
 		end
 		destroyElement ( choicegui[1] )
 		destroyElement ( choicegui[2] )
@@ -195,6 +201,7 @@ function clickOnTutChoice ( button, state, x, y )
 		removeEventHandler ( "onClientRender", root, showIfYouWantTut )
 	end
 end
+
 
 
 function showTutorialImportantPlaces ( )

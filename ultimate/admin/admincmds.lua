@@ -1010,6 +1010,7 @@ function rkick_func ( player, command, kplayer, ... )
 				outputChatBox ("Spieler "..getPlayerName(target).." wurde von "..getPlayerName ( player ).." gekickt! (Grund: "..tostring ( reason )..")", getRootElement(), 255, 0, 0 )
 				takeAllWeapons ( target )
 				kickPlayer ( target, player, tostring(reason) )	
+				outputAdminLog ( getPlayerName ( player ).." hat "..getPlayerName ( target ).." gekickt! Grund: "..tostring(reason)  )	
 			else
 				triggerClientEvent ( player, "infobox_start", getRootElement(), "Der Spieler hat\nkeinen niedrigeren \nAdminrang als du!", 5000, 255, 0, 0 )		
 			end	
@@ -1096,7 +1097,9 @@ function tban_func ( player, command, kplayer, btime,... )
 				local savename = name
 				local success = timebanPlayer ( savename, tonumber(btime), getPlayerName( player ), reason )
 				if success == false then
-					triggerClientEvent ( player, "infobox_start", getRootElement(), "Gebrauch:\n/tban [Player] [Grund]\n[Zeit],max. 3\nWörter", 5000, 0, 125, 255 )		
+					triggerClientEvent ( player, "infobox_start", getRootElement(), "Gebrauch:\n/tban [Player] [Grund]\n[Zeit],max. 3\nWörter", 5000, 0, 125, 255 )	
+				else
+					outputAdminLog ( getPlayerName ( player ).." hat "..kplayer.." gebannt! Zeit: "..btime.." - Grund: "..reason  )	
 				end
 			else	
 				triggerClientEvent ( player, "infobox_start", getRootElement(), "\nGebrauch:\n/tban NAME ZEIT GRUND", 5000, 255, 0, 0 )		

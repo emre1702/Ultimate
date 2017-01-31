@@ -1032,7 +1032,7 @@ function getDatabaseFile ( name )
 
 	local player = client
 	if playerUID[name] then
-		local data = dbPoll ( dbQuery ( handler, "SELECT ??, ??, ??, FROM ?? WHERE ??=?", "text", "editor", "faction", "state_files", "UID", playerUID[name] ), -1 )
+		local data = dbPoll ( dbQuery ( handler, "SELECT ??, ??, ?? FROM ?? WHERE ??=?", "text", "editor", "faction", "state_files", "UID", playerUID[name] ), -1 )
 		if data and data[1] then
 			triggerClientEvent ( player, "recieveDatabaseFile", player, name, data[1]["text"], data[1]["editor"], tonumber ( data[1][faction] ) )
 		else

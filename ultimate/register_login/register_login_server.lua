@@ -7,15 +7,17 @@ ticketPermitted = {}
 addEventHandler ( "onPlayerConnect", getRootElement(), function ( nick, ip, uname, serial )
 	if nick == "Player" then
 		cancelEvent ( true, "Bitte wähle einen Nickname ( Unter \"Settings\" )" )
-		return
 	elseif string.find ( nick, "mtasa" ) then
 		cancelEvent ( true, "Fuck you!" )
-		return
 	elseif string.find ( nick, "'" ) then
 		cancelEvent ( true, "Bitte kein ' benutzen!" )
-		return
-	elseif playerUID[nick] then
-		local result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE UID=? OR ??=?", "ban", playerUID[nick], "Serial", serial ), -1 )
+	else
+		local result = nil
+		if playerUID[nick] then 
+			result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE UID=? OR ??=?", "ban", playerUID[nick], "Serial", serial ), -1 )
+		else
+			result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE ??=?", "ban", "Serial", serial ), -1 )
+		end
 		local bantime = nil 
 		local deleteit = false
 		if result and result[1] then
@@ -31,11 +33,14 @@ addEventHandler ( "onPlayerConnect", getRootElement(), function ( nick, ip, unam
 				end
 			end
 			if deleteit then
-				dbExec ( handler, "DELETE FROM ?? WHERE UID=? OR Serial=?", "ban", "UID", playerUID[nick], serial )
+				if playerUID[nick] then
+					dbExec ( handler, "DELETE FROM ?? WHERE UID=? OR Serial=?", "ban", "UID", playerUID[nick], serial )
+				else
+					dbExec ( handler, "DELETE FROM ?? WHERE Serial=?", "ban", serial )
+				end
 			end
 		elseif getPlayerWarnCount ( nick ) >= 3 then
 			cancelEvent ( true, "Du hast 3 Warns! Ablaufdatum des nächsten Warns: "..getLowestWarnExtensionTime ( nick ) )
-			return
 		end
 	end
 	insertPlayerIntoLoggedIn ( nick, ip, serial )

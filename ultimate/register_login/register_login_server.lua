@@ -4,54 +4,42 @@ setGlitchEnabled ( "fastsprint", true )
 clanMembers = {}
 ticketPermitted = {}
 
-function banCheck ( nick, ip, uname, serial )
-	connectCanceled = false
-	local i, j = string.find ( nick, "mtasa" )
+addEventHandler ( "onPlayerConnect", getRootElement(), function ( nick, ip, uname, serial )
 	if nick == "Player" then
 		cancelEvent ( true, "Bitte wähle einen Nickname ( Unter \"Settings\" )" )
-		connectCanceled = true
-	elseif i and j then
+		return
+	elseif string.find ( nick, "mtasa" ) then
 		cancelEvent ( true, "Fuck you!" )
-		connectCanceled = true
+		return
 	elseif string.find ( nick, "'" ) then
 		cancelEvent ( true, "Bitte kein ' benutzen!" )
-		connectCanceled = true
-	else
-		if playerUID[nick] then
-			local result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ban WHERE UID = ?", playerUID[nick] ), -1 )
-			local bantime = 0
-			if result and result[1] then
-				bantime = result[1]["STime"]
-			end
-			if bantime and bantime ~= 0 then
-				if ( bantime - getTBanSecTime ( 0 ) ) < 0 then
-					dbExec ( handler, "DELETE FROM ?? WHERE ??=?", "ban", "UID", playerUID[nick] )
-				elseif bantime > 0 then
-					local reason = result[1]["Grund"]
-					local admin = playerUIDName[tonumber ( result[1]["AdminUID"] )]
+		return
+	elseif playerUID[nick] then
+		local result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE UID=? OR ??=?", "ban", playerUID[nick], "Serial", serial ), -1 )
+		local bantime = nil 
+		local deleteit = false
+		if result and result[1] then
+			for i=1, #result do
+				if ( result[i]["STime"] - getTBanSecTime ( 0 ) ) <= 0 then
+					deleteit = true
+				else
+					local reason = result[i]["Grund"]
+					local admin = playerUIDName[tonumber ( result[i]["AdminUID"] )]
 					local diff = math.floor ( ( ( bantime - getTBanSecTime ( 0 ) ) / 60 ) * 100 ) / 100
-					cancelEvent ( true, "Du bist noch "..diff.." Stunden von "..admin.." gesperrt, Grund: "..reason )
-					connectCanceled = true
-				end
-			elseif getPlayerWarnCount ( nick ) >= 3 then
-				cancelEvent ( true, "Du hast 3 Warns! Ablaufdatum des nächsten Warns: "..getLowestWarnExtensionTime ( nick ) )
-				connectCanceled = true
-			else
-				local serialresult = dbPoll ( dbQuery ( handler, "SELECT ??, ?? FROM ?? WHERE ?? LIKE ?", "Grund", "AdminUID", "ban", "Serial", serial ), -1 )
-				if serialresult and serialresult[1] then
-					local reason = serialresult[1]["Grund"]
-					local admin = playerUIDName[tonumber(serialresult[1]["AdminUID"])]
-					cancelEvent ( true, "Du bist von "..admin.." gebannt worden! Grund: "..reason..", bei Fragen wende dich bitte an das Forum!" )
-					connectCanceled = true
+					cancelEvent ( true, "Du bist noch "..diff.." Stunden von "..tostring(admin).." gesperrt, Grund: "..tostring(reason) )
+					return
 				end
 			end
+			if deleteit then
+				dbExec ( handler, "DELETE FROM ?? WHERE UID=? OR Serial=?", "ban", "UID", playerUID[nick], serial )
+			end
+		elseif getPlayerWarnCount ( nick ) >= 3 then
+			cancelEvent ( true, "Du hast 3 Warns! Ablaufdatum des nächsten Warns: "..getLowestWarnExtensionTime ( nick ) )
+			return
 		end
 	end
-	if not connectCanceled then
-		insertPlayerIntoLoggedIn ( nick, ip, serial )
-	end
-end
-addEventHandler ( "onPlayerConnect", getRootElement(), banCheck )
+	insertPlayerIntoLoggedIn ( nick, ip, serial )
+end )
 
 
 function regcheck_func ( player )

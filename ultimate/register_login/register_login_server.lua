@@ -11,7 +11,7 @@ addEventHandler ( "onPlayerConnect", getRootElement(), function ( nick, ip, unam
 		cancelEvent ( true, "Fuck you!" )
 	elseif string.find ( nick, "'" ) then
 		cancelEvent ( true, "Bitte kein ' benutzen!" )
-	else
+	else 
 		local result = nil
 		if playerUID[nick] then 
 			result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE UID=? OR ??=?", "ban", playerUID[nick], "Serial", serial ), -1 )

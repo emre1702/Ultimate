@@ -18,17 +18,20 @@ addEventHandler ( "onPlayerConnect", getRootElement(), function ( nick, ip, unam
 		else
 			result = dbPoll ( dbQuery ( handler, "SELECT STime, Grund, AdminUID FROM ?? WHERE ??=?", "ban", "Serial", serial ), -1 )
 		end
-		local bantime = nil 
 		local deleteit = false
 		if result and result[1] then
 			for i=1, #result do
-				if ( result[i]["STime"] - getTBanSecTime ( 0 ) ) <= 0 then
+				if result[i]["STime"] ~= 0 and ( result[i]["STime"] - getTBanSecTime ( 0 ) ) <= 0 then
 					deleteit = true
 				else
 					local reason = result[i]["Grund"]
 					local admin = playerUIDName[tonumber ( result[i]["AdminUID"] )]
-					local diff = math.floor ( ( ( bantime - getTBanSecTime ( 0 ) ) / 60 ) * 100 ) / 100
-					cancelEvent ( true, "Du bist noch "..diff.." Stunden von "..tostring(admin).." gesperrt, Grund: "..tostring(reason) )
+					local diff = math.floor ( ( ( result[i]["STime"] - getTBanSecTime ( 0 ) ) / 60 ) * 100 ) / 100
+					if diff >= 0 then
+						cancelEvent ( true, "Du bist noch "..diff.." Stunden von "..tostring(admin).." gesperrt, Grund: "..tostring(reason) )
+					else
+						cancelEvent ( true, "Du wurdest permanent von "..tostring(admin).." gesperrt, Grund: "..tostring(reason) )
+					end
 					return
 				end
 			end

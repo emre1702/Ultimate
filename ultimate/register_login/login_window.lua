@@ -310,7 +310,7 @@ local function mainRender()
 			setTimer ( checkForSocialStateChanges, 60000, 0 )
 			setTimer ( getPlayerSocialAvailableStates, 1000, 1 )
 			removeCommandHandler ( "testlogin", setNewLink )
-			if not fileExists("files/login.txt") then
+			if not fileExists("@files/login.txt") then
 				outputChatBox ("Gebe \"/auto 1\" zum Speichern deines Passwortes ein.")
 			end
 		end
@@ -332,8 +332,8 @@ end
 
 function startRender ( name, boolean )
 	if boolean then
-		if fileExists("files/login.txt") then
-			local autofile = fileOpen("files/login.txt")
+		if fileExists("@files/login.txt") then
+			local autofile = fileOpen("@files/login.txt")
 			password = tostring(fileRead(autofile, 500))
 			fileClose(autofile)
 		end
@@ -631,15 +631,15 @@ checkBrowserActivated()
 
 saveLogin = function(ERROR_nil, ERROR_nil)
 	if ERROR_nil == "1" then
-		if fileExists("files/login.txt") then
-			fileDelete("files/login.txt")
+		if fileExists("@files/login.txt") then
+			fileDelete("@files/login.txt")
 		end
-		local loginfile = fileCreate("files/login.txt")
+		local loginfile = fileCreate("@files/login.txt")
 		fileWrite(loginfile, password)
 		fileClose(loginfile)
 		outputChatBox("#C8C800[INFO]: #FFFFFFAuto-Login aktiviert!", 0, 0, 0,true)
 	else
-		fileDelete("files/login.txt")
+		fileDelete("@files/login.txt")
 		outputChatBox("#C8C800[INFO]: #FFFFFFAuto-Login deaktiviert!", 0, 0, 0,true)
 	end
 end

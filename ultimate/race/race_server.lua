@@ -1,58 +1,132 @@
-﻿function invitePlayerToRace ( text, target, betTyp, betAmount, targetID )
+﻿addEvent ( "invitePlayerToRace", true )
 
+local racedata = {}
+local racemarker = {}
+
+
+addEventHandler ( "invitePlayerToRace", getRootElement(), function ( text, target, betTyp, betAmount, targetID )
 	if #text > 1 then
-		local player = client
-		local x1, y1, z1 = getElementPosition ( player )
-		local x2, y2, z2 = getElementPosition ( target )
-		local dist = getDistanceBetweenPoints3D ( x1, y1, z1, x2, y2, z2 )
-		if dist <= 5 then
-			betAmount = math.floor ( math.abs ( tonumber ( betAmount ) ) )
-			if betAmount == 0 then
-				betTyp = 0
+		if not racedata[client] then
+			if not racedata[target] then
+				local x1, y1, z1 = getElementPosition ( client )
+				local x2, y2, z2 = getElementPosition ( target )
+				local dist = getDistanceBetweenPoints3D ( x1, y1, z1, x2, y2, z2 )
+				if dist <= 5 then
+					betAmount = math.floor ( math.abs ( tonumber ( betAmount ) ) )
+					if betAmount == 0 then
+						betTyp = 0
+					end
+					outputChatBox ( getPlayerName ( client ).." hat dich zu einem Wettrennen herausgefordert, Ziel: "..text..".", target, 200, 200, 0 )
+					if ( betTyp == 1 ) then
+						outputChatBox ( "Preisgeld: "..betAmount.." $", target, 200, 200, 0 )
+					elseif ( betTyp == 2 ) then
+						outputChatBox ( "Wetteinsatz: Die Zulassungspapiere für dein Fahrzeug.", target, 200, 200, 0 )
+					end
+					outputChatBox ( "Tippe /accept race, um die Herausforderung anzunehmen.", target, 200, 200, 0 )
+					outputChatBox ( "Du hast "..getPlayerName ( target ).." zu einem Rennen herausgefordert.", client, 0, 200, 0 )
+					
+					racedata[client] = { opponent = target, betTyp = betTyp, betAmount = betAmount, targetID = targetID }
+					racedata[target] = { opponent = client, betTyp = betTyp, betAmount = betAmount, targetID = targetID }
+				else
+					infobox ( client, "Du hast bist\nzu weit entfernt!", 5000, 150, 0, 0 )
+				end
+			else
+				infobox ( client, "Der Spieler ist schon in einem Rennen!", 5000, 150, 0, 0 )
 			end
-			outputChatBox ( getPlayerName ( client ).." hat dich zu einem Wettrennen herausgefordert, Ziel: "..text..".", target, 200, 200, 0 )
-			if ( betTyp == 1 ) then
-				outputChatBox ( "Preisgeld: "..betAmount.." $", target, 200, 200, 0 )
-			elseif ( betTyp == 2 ) then
-				outputChatBox ( "Wetteinsatz: Die Zulassungspapiere für dein Fahrzeug.", target, 200, 200, 0 )
-			end
-			outputChatBox ( "Tippe /accept race, um die Herausforderung anzunehmen.", target, 200, 200, 0 )
-			outputChatBox ( "Du hast "..getPlayerName ( target ).." zu einem Rennen herausgefordert.", client, 0, 200, 0 )
-			
-			vioSetElementData ( target, "challengerQ", client )
-			vioSetElementData ( target, "betTypQ", betTyp )
-			vioSetElementData ( target, "betAmountQ", betAmount )
-			vioSetElementData ( target, "targetIDQ", targetID )
-			
-			vioSetElementData ( client, "challengerQ", target )
-			vioSetElementData ( client, "betTypQ", betTyp )
-			vioSetElementData ( client, "betAmountQ", betAmount )
-			vioSetElementData ( client, "targetIDQ", targetID )
 		else
-			infobox ( player, "Du hast bist\nzu weit entfernt!", 5000, 150, 0, 0 )
+			infobox ( client, "Du bist schon in einem Rennen!", 5000, 150, 0, 0 )
+		end	
+	end
+end )
+
+
+local function raceTargetMarkerHit ( marker )
+	if racedata[source] and racemarker[marker] then
+		local player = racedata[source].opponent
+		
+		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
+		outputChatBox ( "Du hast das Rennen gewonnen!", source, 0, 200, 0 )
+		
+		local betAmount = racedata[source].betAmount * 2
+		triggerClientEvent ( source, "raceWon", source, betAmount )
+		if betAmount > 0 then
+			vioSetElementData ( source, "money", vioGetElementData ( source, "money" ) + betAmount )
+			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", source, 0, 125, 0 )
 		end
+		
+		removeRaceEvent ( player, source )
 	end
 end
-addEvent ( "invitePlayerToRace", true )
-addEventHandler ( "invitePlayerToRace", getRootElement(), invitePlayerToRace )
+
+
+local function racePlayerQuit ()
+	if vioGetElementData ( source, "isInRace" ) then
+		local player = source
+		local challenger = racedata[source].opponent
+		
+		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
+		
+		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
+		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
+		if betAmount > 0 then
+			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
+			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
+		end
+		removeRaceEvent ( player, challenger )
+	end
+end
+
+
+local function racePlayerWasted ()
+	if vioGetElementData ( source, "isInRace" ) then
+		local player = source
+		local challenger = vioGetElementData ( player, "challenger" )
+		
+		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
+		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
+		
+		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
+		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
+		if betAmount > 0 then
+			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
+			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
+		end
+		removeRaceEvent ( player, challenger )
+	end
+end
+
+
+local function racePlayerVehExit ()
+	if vioGetElementData ( source, "isInRace" ) then
+		local player = source
+		local challenger = vioGetElementData ( player, "challenger" )
+		
+		
+		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
+		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
+		
+		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
+		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
+		if betAmount > 0 then
+			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
+			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
+		end
+		
+		removeRaceEvent ( player, challenger )
+	end
+end
+
 
 function acceptRace ( player )
 
-	local challenger = vioGetElementData ( player, "challengerQ" )
-	local bet = vioGetElementData ( player, "betAmountQ" )
-	local betTyp = vioGetElementData ( player, "betTypQ" )
-	local targetID = vioGetElementData ( player, "targetIDQ" )
+	local challenger = racedata[player].opponent
+	local bet = racedata[player].betAmount
+	local betTyp = racedata[player].betType
+	local targetID = racedata[player].targetID
 	if isElement ( challenger ) and isElement ( player ) then
-		vioSetElementData ( player, "betAmount", bet )
-		vioSetElementData ( challenger, "betAmount", bet )
-		vioSetElementData ( player, "betTyp", betTyp )
-		vioSetElementData ( challenger, "betTyp", betTyp )
-		vioSetElementData ( player, "challenger", challenger )
-		vioSetElementData ( challenger, "challenger", player )
-		vioSetElementData ( player, "targetID", targetID )
-		vioSetElementData ( challenger, "targetID", targetID )
-	end
-	if isElement ( challenger ) and vioGetElementData ( challenger, "challenger" ) == player and vioGetElementData ( player, "betAmount" ) == vioGetElementData ( challenger, "betAmount" ) and vioGetElementData ( player, "betTyp" ) == vioGetElementData ( challenger, "betTyp" ) then
+		racedata[challenger] = { opponent = player, betTyp = betTyp, betAmount = bet, targetID = targetID }
+		racedata[player] = { opponent = challenger, betTyp = betTyp, betAmount = bet, targetID = targetID }
+
 		local x1, y1, z1 = getElementPosition ( player )
 		local x2, y2, z2 = getElementPosition ( challenger )
 		
@@ -60,7 +134,7 @@ function acceptRace ( player )
 		if dist <= 5 then
 			if getPedOccupiedVehicleSeat ( player ) == 0 then
 				if getPedOccupiedVehicleSeat ( challenger ) == 0 then
-					if vioGetElementData ( player, "betTyp" ) == 0 or ( vioGetElementData ( player, "betTyp" ) == 1 and vioGetElementData ( player, "money" ) >= bet and vioGetElementData ( challenger, "money" ) >= bet ) then
+					if betTyp == 0 or ( betTyp == 1 and vioGetElementData ( player, "money" ) >= bet and vioGetElementData ( challenger, "money" ) >= bet ) then
 						vioSetElementData ( player, "money", vioGetElementData ( player, "money" ) - bet )
 						vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) - bet )
 						
@@ -103,19 +177,18 @@ function acceptRace ( player )
 							end,
 						3000 + 3000, 1, veh1, veh2, player, challenger )
 						
-						local i = vioGetElementData ( player, "targetID" )
 						
-						local x, y, z = possibleRaceTargets["x"][i], possibleRaceTargets["y"][i], possibleRaceTargets["z"][i]
+						local x, y, z = possibleRaceTargets["x"][targetID], possibleRaceTargets["y"][targetID], possibleRaceTargets["z"][targetID]
 						local marker = createMarker ( x, y, z, "checkpoint", 10, 200, 0, 0, 125, nil )
 						local blip = createBlip ( x, y, z, 53, 2, 0, 0, 0, 255, 0, 99999, nil )
 						
 						addEventHandler ( "onPlayerMarkerHit", player, raceTargetMarkerHit )
 						addEventHandler ( "onPlayerMarkerHit", challenger, raceTargetMarkerHit )
 						
-						vioSetElementData ( player, "raceMarker", marker )
-						vioSetElementData ( challenger, "raceMarker", marker )
-						vioSetElementData ( player, "raceBlip", blip )
-						vioSetElementData ( challenger, "raceBlip", blip )
+						racemarker[marker] = blip
+
+						racedata[player].marker = marker 
+						racedata[challenger].marker = marker
 						
 						setElementVisibleTo ( marker, player, true )
 						setElementVisibleTo ( blip, player, true )
@@ -137,95 +210,8 @@ function acceptRace ( player )
 	else
 		infobox ( player, "Du hast keine\nHerausforderung!", 5000, 150, 0, 0 )
 	end
-	vioSetElementData ( player, "challenger", false )
 end
 
-function raceTargetMarkerHit ( marker )
-
-	if vioGetElementData ( source, "isInRace" ) and marker == vioGetElementData ( source, "raceMarker" ) then
-		local challenger = source
-		local player = vioGetElementData ( challenger, "challenger" )
-		removeRaceEvent ( player, challenger )
-		
-		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
-		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
-		
-		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
-		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
-		if betAmount > 0 then
-			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
-			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
-		end
-		
-		vioSetElementData ( player, "isInRace", false )
-		vioSetElementData ( challenger, "isInRace", false )
-	end
-end
-
-function racePlayerQuit ()
-
-	if vioGetElementData ( source, "isInRace" ) then
-		local player = source
-		local challenger = vioGetElementData ( player, "challenger" )
-		removeRaceEvent ( player, challenger )
-		
-		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
-		
-		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
-		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
-		if betAmount > 0 then
-			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
-			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
-		end
-		
-		vioSetElementData ( player, "isInRace", false )
-		vioSetElementData ( challenger, "isInRace", false )
-	end
-end
-
-function racePlayerWasted ()
-
-	if vioGetElementData ( source, "isInRace" ) then
-		local player = source
-		local challenger = vioGetElementData ( player, "challenger" )
-		removeRaceEvent ( player, challenger )
-		
-		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
-		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
-		
-		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
-		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
-		if betAmount > 0 then
-			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
-			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
-		end
-		
-		vioSetElementData ( player, "isInRace", false )
-		vioSetElementData ( challenger, "isInRace", false )
-	end
-end
-
-function racePlayerVehExit ()
-
-	if vioGetElementData ( source, "isInRace" ) then
-		local player = source
-		local challenger = vioGetElementData ( player, "challenger" )
-		removeRaceEvent ( player, challenger )
-		
-		outputChatBox ( "Du hast das Rennen verloren!", player, 125, 0, 0 )
-		outputChatBox ( "Du hast das Rennen gewonnen!", challenger, 0, 200, 0 )
-		
-		local betAmount = vioGetElementData ( challenger, "betAmount" ) * 2
-		triggerClientEvent ( challenger, "raceWon", challenger, betAmount )
-		if betAmount > 0 then
-			vioSetElementData ( challenger, "money", vioGetElementData ( challenger, "money" ) + betAmount )
-			outputChatBox ( "Du erhälst "..betAmount.." $ Preisgeld!", challenger, 0, 125, 0 )
-		end
-		
-		vioSetElementData ( player, "isInRace", false )
-		vioSetElementData ( challenger, "isInRace", false )
-	end
-end
 
 function removeRaceEvent ( player, challenger )
 
@@ -238,6 +224,12 @@ function removeRaceEvent ( player, challenger )
 	removeEventHandler ( "onPlayerMarkerHit", player, raceTargetMarkerHit )
 	removeEventHandler ( "onPlayerMarkerHit", challenger, raceTargetMarkerHit )
 	
-	destroyElement ( vioGetElementData ( player, "raceMarker" ) )
-	destroyElement ( vioGetElementData ( player, "raceBlip" ) )
+	destroyElement ( racemarker[racedata[player].marker] )
+	destroyElement ( racedata[player].marker )
+
+	racedata[player] = nil 
+	racedata[challenger] = nil
+
+	vioSetElementData ( player, "isInRace", false )
+	vioSetElementData ( challenger, "isInRace", false )
 end

@@ -1855,7 +1855,7 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   
 `Antrieb` varchar(10) NOT NULL,
   
-`plate` text NOT NULL,
+`plate` varchar(50) NOT NULL DEFAULT 'BonusBaba',
 PRIMARY KEY (`id`) 
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

@@ -1667,8 +1667,6 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   
 `Name` varchar(50) NOT NULL,
   
-`ID` int(11) NOT NULL,
-  
 `Geld` double NOT NULL DEFAULT '350',
   
 `Spawnpos_X` varchar(50) NOT NULL DEFAULT '-2458.288085',

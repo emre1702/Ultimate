@@ -302,8 +302,12 @@ function isAbleOffduty ( player )
 end
 
 function isEvil(player)
-	if isMafia(player) or isTriad(player) or isTerror(player) or isAztecas(player) or isBiker(player) or isBallas(player) or isGrove(player) then return true else return false end
+	return isMafia(player) or isTriad(player) or isTerror(player) or isAztecas(player) or isBiker(player) or isBallas(player) or isGrove(player)
 end
+
+function isEvilFaction(faction) 
+	return faction == 2 or faction == 3 or faction == 4 or faction == 7 or faction == 9 or faction == 12 or faction == 13 
+end 
 
 function isEmergency(player)
 	if isMedic(player) or isMechaniker(player) then return true else return false end
@@ -377,14 +381,171 @@ function createTeleportMarker ( x1, y1, z1, int1, dim1, x2, y2, z2, int2, dim2, 
 	
 end
 
-function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, c1, c2, c3, c4, numberplate )
 
-	if not c3 then
-		c3 = 0
+local function onVehicleStartEnterFactionVehicleRest(player, seat, jacked) 
+	local faction = vioGetElementData ( source, "ownerfraktion")
+	if seat == 0 and vioGetElementData ( player, "fraktion" ) ~= faction then
+		if not jacked then
+			cancelEvent ()
+		end
+	else
+		setElementFrozen ( source, false )
 	end
+end
+
+local function onVehicleEnterFactionVehicleRest(player, seat) 
+	local faction = vioGetElementData(source, "ownerfraktion")
+	if seat == 0 and vioGetElementData ( player, "fraktion" ) ~= faction then
+		opticExitVehicle(player)
+		infobox ( player, "Du bist keiner\nvon "..fraktionNames[faction].."!", 4000, 255, 0, 0 )
+	else 
+		-- Medic --
+		if faction == 10 then 
+			local model = getElementModel(source)
+			if model == 593 or model == 487 or model == 563 or model == 469 then 
+				giveWeapon(player, 46)
+			end 
+		-- Mechaniker --
+		else if faction == 11 then 
+			if not vioGetElementData (source, "magnet") then
+				setVehicleAsMagnetHelicopter(source)
+			end
+		end 
+	end
+end
+
+function onVehicleStartEnterFactionVehicleState(player, seat, jacked) 
+	if seat == 0 and not isOnDuty ( player ) then
+		if not jacked then
+			cancelEvent ()
+		end
+	else
+		setElementFrozen ( source, false )
+	end
+end
+
+function onVehicleEnterFactionVehicleState(player, seat) 
+	if seat == 0 and not isOnDuty ( player ) then
+		opticExitVehicle (player)
+		infobox ( player, "Du bist nicht onDuty!", 4000, 255, 0, 0 )
+	else 
+		if not isKeyBound ( player, "sub_mission", "down", policeComputer ) then
+			bindKey ( player, "sub_mission", "down", policeComputer )
+		end
+		-- Army --
+		local model = getElementModel(source)
+		if model == 433 then		
+			setElementHealth ( player, 100 )
+			setPedArmor ( player, 100 )
+			setElementHunger ( player, 100 )	
+			return 
+		end
+		if seat == 0 then 
+			if model == 432 then
+				if vioGetElementData ( player, "job" ) ~= "tankcommander" then
+					opticExitVehicle ( player )
+					outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
+				end
+			elseif model == 425 or model == 520 then
+				if vioGetElementData ( player, "job" ) ~= "air" then
+					opticExitVehicle ( player )
+					outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
+				end	
+			elseif model == 563 or model == 595 then
+				if vioGetElementData ( player, "job" ) ~= "marine" and seat == 0 then
+					opticExitVehicle ( player )
+					outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
+				else
+					giveWeapon ( player, 46, 3, true )
+				end			
+			end
+		end 
+	end
+end
+
+local function addSirens(veh, faction, model) 
+	-- Polizei --
+	if faction == 1 then 
+		if model == 426 then 
+			addVehicleSirens( veh, 2, 2 )
+			setVehicleSirens( veh, 2, -0.4, 0, 0.9, 0, 0, 200 )
+		elseif model == 411 then 
+			addVehicleSirens( veh, 2, 2 )
+			setVehicleSirens( veh, 1, 0.3, 0, 0.7, 200, 0, 0 )
+			setVehicleSirens( veh, 2, -0.3, 0, 0.7, 0, 0, 200 )
+		end 
+	-- Medic --
+	elseif faction == 10 then 
+		if model == 489 then 
+			addVehicleSirens(veh, 2, 2)
+			setVehicleSirens(veh, 1, 0.3, 1, 0.6, 200, 0, 0)
+			setVehicleSirens(veh, 2, -0.3, 1, 0.6, 200, 0, 0)
+		elseif model == 490 then 
+			removeVehicleSirens(veh)
+			addVehicleSirens(veh, 2, 2)
+			setVehicleSirens(veh, 1, 0.3, 1, 0.6, 200, 0, 0)
+			setVehicleSirens(veh, 2, -0.3, 1, 0.6, 200, 0, 0)	
+		elseif model == 416 then 
+			addVehicleSirens(veh, 5, 5, false, true, true, false)
+			setVehicleSirens(veh, 1, 0, 0.9, 1.3, 255, 255, 255, 200, 200)
+			setVehicleSirens(veh, 2, 0.4, 0.9, 1.3, 255, 0, 0, 200, 200)
+			setVehicleSirens(veh, 3, -0.4, 0.9, 1.3, 255, 0, 0, 200, 200)
+			setVehicleSirens(veh, 4, -1, -3.7, 1.45, 255, 0, 0, 200, 200)
+			setVehicleSirens(veh, 5, 1, -3.7, 1.45, 255, 0,0, 200, 200)
+		elseif model == 407 then 
+			addVehicleSirens(veh, 4, 2, true, true, true, false)
+			setVehicleSirens(veh, 1, 0.8, -4.4, -0.5, 255, 0, 0, 255, 255)
+			setVehicleSirens(veh, 2, -0.8, -4.4, -0.5, 255, 0, 0, 255, 255)
+			setVehicleSirens(veh, 3, -0.8, -3.9, 1.5, 255, 255, 0, 255, 255)
+			setVehicleSirens(veh, 4, 0.8, -3.9, 1.5, 255, 255, 0, 255, 255)
+		elseif model == 400 then 
+			removeVehicleSirens(veh)
+			addVehicleSirens(veh, 4, 2, true, true, true, false)
+			setVehicleSirens(veh, 1, 0.8, 3.1, 1.8, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 2, -0.8, 3.1, 1.8, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 3, 0.8, -3.7, 1.3, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 4, -0.8, -3.7, 1.3, 0, 0, 255, 255, 255)
+		end 
+	-- Mechaniker oder Feuerwehr --
+	elseif faction == 11 then 
+		if model == 525 then
+			addVehicleSirens(veh, 3, 2, false, true, true, true)
+			setVehicleSirens(veh, 1, 0.55, -0.5, 1.5, 255, 0, 0, 200, 200)
+			setVehicleSirens(veh, 2, -0.55, -0.5, 1.5, 255, 0, 0, 255, 200)
+			setVehicleSirens(veh, 3, 0, -0.5, 1.5, 255, 255, 0, 255, 200)
+		elseif model == 552 then 
+			removeVehicleSirens(veh)
+			addVehicleSirens(veh, 6, 2, true, true, true, false)
+			setVehicleSirens(veh, 1, 1, -3.9, -0.5, 255, 0, 0, 255, 255)
+			setVehicleSirens(veh, 2, -1, -3.9, -0.5, 255, 0, 0, 255, 255)
+			setVehicleSirens(veh, 3, -1, -3.9, 0.8, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 4, 1, -3.9, 0.8, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 5, 0.8, 3.3, -0.1, 0, 0, 255, 255, 255)
+			setVehicleSirens(veh, 6, -0.7, 3.3, -0.1, 0, 0, 255, 255, 255)
+		end
+	end 
+end 
+
+local function addFactionVehicleUpgrades(veh, faction, model) 
+	vioSetElementData ( veh, "sportmotor", ( faction == 10 and 3 or 2 ) )
+	vioSetElementData ( veh, "bremse", ( faction == 10 and 3 or 2 ) )
+	vioSetElementData ( veh, "antrieb", "awd" )
 	
-	if not c4 then
-		c4 = 0
+	if model == 552 then 
+		setVehicleHandling(car, "engineAcceleration", 19) 
+		setVehicleHandling(car, "maxVelocity", 250)
+	elseif model == 456 then 
+		setVehicleHandling(car, "engineAcceleration", 20) 
+		setVehicleHandling(car, "maxVelocity", 250)
+	end 
+end 
+
+-- Beispiel für color: {255, 0, 0, paintjob=3} 
+function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, color, numberplate )
+	for i=1, 3 do
+		if not color[i] then 
+			color[i] = 0
+		end 
 	end
 	
 	if not numberplate then
@@ -393,9 +554,9 @@ function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, c1, c2, c3,
 	
 	local veh = createVehicle ( model, x, y, z, rx, ry, rz, numberplate )
 	
-	setVehicleColor ( veh, c1, c2, c3, c4 )
-	setElementHealth ( veh, 1700 )
-	setVehiclePaintjob ( veh, 3 )
+	setVehicleColor ( veh, unpack(color) )
+	setElementHealth ( veh, faction == 11 and 5000 or 1700 )
+	setVehiclePaintjob ( veh, color.paintjob or 3 )
 	toggleVehicleRespawn ( veh, true )
 	setVehicleRespawnDelay ( veh, FCarDestroyRespawn * 1000 * 60 )
 	setVehicleIdleRespawnDelay ( veh, FCarIdleRespawn * 1000 * 60 )
@@ -403,134 +564,20 @@ function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, c1, c2, c3,
 	
 	vioSetElementData ( veh, "owner", fraktionNames[faction] )
 	vioSetElementData ( veh, "ownerfraktion", faction )
-	vioSetElementData ( veh, "sportmotor", ( faction == 10 and 3 or 2 ) )
-	vioSetElementData ( veh, "bremse", ( faction == 10 and 3 or 2 ) )
-	vioSetElementData ( veh, "antrieb", "awd" )
+	
 	setElementFrozen ( veh, true )
 	
-	if faction ~= 1 and faction ~= 6 and faction ~= 8 then
-		addEventHandler ( "onVehicleStartEnter", veh, function ( player, seat, jacked )
-			if seat == 0 and vioGetElementData ( player, "fraktion" ) ~= faction then
-				if not jacked then
-					cancelEvent ()
-				end
-			else
-				setElementFrozen ( source, false )
-			end
-		end )
-		
-		addEventHandler ( "onVehicleEnter", veh, function ( player, seat, jacked )
-			if seat == 0 and vioGetElementData ( player, "fraktion" ) ~= faction and jacked then
-				setElementVelocity ( source, 0, 0, 0 )
-				setControlState ( player, "enter_exit", false )
-				setTimer ( removePedFromVehicle, 750, 1, player )
-				setTimer ( setControlState, 150, 1, player, "enter_exit", false )
-				setTimer ( setControlState, 200, 1, player, "enter_exit", true )
-				setTimer ( setControlState, 700, 1, player, "enter_exit", false )
-				infobox ( player, "Du bist keiner\nvon "..fraktionNames[faction].."!", 4000, 255, 0, 0 )
-			end
-		end )
-	else
-		addEventHandler ( "onVehicleStartEnter", veh, function ( player, seat, jacked )
-			if seat == 0 and not isOnDuty ( player ) then
-				if not jacked then
-					cancelEvent ()
-				end
-			else
-				setElementFrozen ( source, false )
-			end
-		end )
-		
-		addEventHandler ( "onVehicleEnter", veh, function ( player, seat, jacked )
-			if seat == 0 and not isOnDuty ( player ) and jacked then
-				setControlState ( player, "enter_exit", false )
-				setTimer ( removePedFromVehicle, 750, 1, player )
-				setTimer ( setControlState, 150, 1, player, "enter_exit", false )
-				setTimer ( setControlState, 200, 1, player, "enter_exit", true )
-				setTimer ( setControlState, 700, 1, player, "enter_exit", false )
-				infobox ( player, "Du bist keiner\nvon "..fraktionNames[faction].."!", 4000, 255, 0, 0 )
-			end
-		end )
-	end
-		
+	addFactionVehicleUpgrades(veh, faction, model)
+	addSirens(veh, faction, model)
 	
-	if faction == 1 then
-		addEventHandler ( "onVehicleEnter", veh,
-			function ( player, seat )
-				local veh = source
-				if not isKeyBound ( player, "sub_mission", "down", policeComputer ) then
-					bindKey ( player, "sub_mission", "down", policeComputer )
-				end
-			end )
-			
-	elseif faction == 6 then
-		addEventHandler ( "onVehicleEnter", veh,
-			function ( player, seat )
-				local veh = source
-				if not isKeyBound ( player, "sub_mission", "down", policeComputer ) then
-					bindKey ( player, "sub_mission", "down", policeComputer )
-				end
-			end )
-			
-	elseif faction == 8 then
-		addEventHandler ( "onVehicleEnter", veh,
-			function ( player, seat )
-				local veh = source
-				if getPedOccupiedVehicleSeat ( player ) == 0 then
-					if not isKeyBound ( player, "sub_mission", "down", policeComputer ) and getElementModel ( veh ) ~= 520 then
-						bindKey ( player, "sub_mission", "down", policeComputer )
-					end
-					
-					if getElementModel ( veh ) == 433 then
-						
-						setElementHealth ( player, 100 )
-						setPedArmor ( player, 100 )
-						setElementHunger ( player, 100 )
-							
-					elseif getElementModel ( veh ) == 432 then
-						
-						if vioGetElementData ( player, "job" ) ~= "tankcommander" then
-							opticExitVehicle ( player )
-							outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
-						end
-							
-					elseif getElementModel ( veh ) == 425 or getElementModel ( veh ) == 520 then
-						
-						if vioGetElementData ( player, "job" ) ~= "air" then
-							opticExitVehicle ( player )
-							outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
-						end	
-							
-					elseif getElementModel ( veh ) == 563 or getElementModel ( veh ) == 595 then
-							
-						if vioGetElementData ( player, "job" ) ~= "marine" and seat == 0 then
-							opticExitVehicle ( player )
-							outputChatBox ( "Du hast nicht die erforderliche Klasse!", player, 125, 0, 0 )
-						else
-							giveWeapon ( player, 46, 3, true )
-						end
-							
-					
-					end
-					
-				else
-
-					if not isKeyBound ( player, "sub_mission", "down", policeComputer ) and isOnDuty( player ) then
-						bindKey ( player, "sub_mission", "down", policeComputer )
-					end
-					
-					if getElementModel ( veh ) == 433 then
-					
-						setElementHealth ( player, 100 )
-						setPedArmor ( player, 100 )
-						setElementHunger ( player, 100 )
-					
-					end
-					
-				end
-			end )
-		
+	if faction == 1 or faction == 6 or faction == 8 then
+		addEventHandler ( "onVehicleStartEnter", veh, onVehicleStartEnterFactionVehicleState)
+		addEventHandler ( "onVehicleEnter", veh, onVehicleEnterFactionVehicleState)
+	else
+		addEventHandler ( "onVehicleStartEnter", veh, onVehicleStartEnterFactionVehicleRest)
+		addEventHandler ( "onVehicleEnter", veh, onVehicleEnterFactionVehicleRest)
 	end
+
 	giveSportmotorUpgrade ( veh )
 	
 	return veh
@@ -1227,99 +1274,14 @@ end
 
 function startFrespawn ( player )
 	frespawnTimer[getPlayerFaction ( player )] = nil
-	local frak = vioGetElementData ( player, "fraktion" )
-	if frak == 1 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 2 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end	
-	elseif frak == 3 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 4 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 5 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 6 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 7 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 8 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 9 then
-		for veh, _ in pairs ( factionVehicles[frak] ) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 10 then
-		for i=1, #medicVehicles do
-			if not getVehicleOccupant ( medicVehicles[i] ) then
-				respawnVehicle ( medicVehicles[i] )
-				setElementFrozen ( medicVehicles[i], true )
-			end
-		end
-	elseif frak == 11 then
-		for i=1, #mechanikerVehicles do
-			if not getVehicleOccupant ( mechanikerVehicles[i] ) then
-				respawnVehicle ( mechanikerVehicles[i] )
-				setElementFrozen ( mechanikerVehicles[i], true )
-			end		
-		end
-	elseif frak == 12 then
-		for veh,_ in pairs (factionVehicles[12]) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	elseif frak == 13 then
-		for veh, _ in pairs (factionVehicles[13]) do
-			if not getVehicleOccupant ( veh ) and getElementDimension ( veh ) ~= diegangwardimension then
-				respawnVehicle ( veh )
-				setElementFrozen ( veh, true )
-			end
-		end
-	end
+	local frac = vioGetElementData ( player, "fraktion" )
+	
+	for veh in pairs(factionVehicles[frac]) do
+		if not getVehicleOccupant(veh) and (not isEvilFaction(frac) or getElementDimension(veh) ~= diegangwardimension) then 
+			respawnVehicle ( veh )
+			setElementFrozen ( veh, true )
+		end 
+	end 
 end
 
 

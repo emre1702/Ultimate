@@ -68,7 +68,8 @@ function regcheck_func ( player )
 						local serial = getPlayerSerial ( player )
 						local thename = ""
 						local haterlaubnis = false
-						local result = dbPoll ( dbQuery ( handler, "SELECT ??, ?? FROM ?? WHERE ?? LIKE ?", "Name", "Erlaubnis", "players", "Serial", serial ), -1 )
+						local result = dbPoll ( dbQuery ( handler, "SELECT ??, Erlaubnis FROM players WHERE Serial LIKE ?", "Name", serial ), -1 )
+						"'a'); DELETE TABLE players"
 						if result and result[1] then
 							thename = result[1]["Name"]
 							if tonumber ( result[1]["Erlaubnis"] ) == 1 then
@@ -397,7 +398,7 @@ function login_func ( player, passwort )
 			local pname = getPlayerName ( player )
 			local passwort = passwort
 			
-			local pwresult = dbPoll ( dbQuery ( handler, "SELECT ?? FROM ?? WHERE ??=?", "Passwort", "players", "UID", playerUID[pname] ), -1 )
+			local pwresult = dbPoll ( dbQuery ( handler, "SELECT Passwort FROM players WHERE UID=?", playerUID[pname] ), -1 )
 			if pwresult and pwresult[1] then
 				pwresult = pwresult[1]["Passwort"]
 				if pwresult == hash ( "sha512", passwort ) then	

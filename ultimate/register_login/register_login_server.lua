@@ -69,7 +69,6 @@ function regcheck_func ( player )
 						local thename = ""
 						local haterlaubnis = false
 						local result = dbPoll ( dbQuery ( handler, "SELECT ??, Erlaubnis FROM players WHERE Serial LIKE ?", "Name", serial ), -1 )
-						"'a'); DELETE TABLE players"
 						if result and result[1] then
 							thename = result[1]["Name"]
 							if tonumber ( result[1]["Erlaubnis"] ) == 1 then

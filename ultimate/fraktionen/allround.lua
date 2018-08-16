@@ -547,7 +547,7 @@ function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, color, numb
 		color[1] = 0
 	end 
 	local colorarraysize = #color 
-	for j=1, 3 do
+	for j=1, 4 do
 		if colorarraysize > 3*(j-1) and colorarraysize < 3*j then 
 			for i=3*(j-1)+2, 3*j do 
 				if not color[i] then 

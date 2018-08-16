@@ -1,4 +1,4 @@
-﻿createMarker ( -2667.78, -5.39, 5.05, "cylinder", 3, 255, 0, 0, 150 )
+﻿createMarker ( -2667.78, -5.39, 5.05, "cylinder", 1.2, 255, 0, 0, 150 )
 baumarktSphere = createColSphere ( -2667.78, -5.39, 5.05, 3 )
 createBlip ( -2667.78, -5.39, 5.05, 11, 2, 255, 0, 0, 255, 0, 200 )
 local clickedbut = nil

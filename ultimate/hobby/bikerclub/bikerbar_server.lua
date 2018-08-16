@@ -44,7 +44,7 @@ setVehicleLocked ( MistysFreeway3, true )
 vioSetElementData ( MistysFreeway3, "owner", "console" )
 --setVehicleFrozen ( MistysFreeway3, true )
 
-MistysFreeway4 = createVehicle ( 463, -2242.1435546875, -94.052627563477, 34.937313079834, 0, 0, 175 )
+MistysFreeway4 = createVehicle ( 463, -2243.9, -93.1, 35.0, 0, 0, 110 )
 toggleVehicleRespawn ( MistysFreeway4, true )
 setVehicleIdleRespawnDelay ( MistysFreeway4, 1000 )
 setVehicleDamageProof ( MistysFreeway4, true )

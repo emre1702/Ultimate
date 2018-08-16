@@ -72,7 +72,7 @@ addEventHandler( "onElementClicked", bank_door,
 	
 	end )
 
-createBlip ( 2364.8955078125, 2377.5654296875, 10.8203125, 52 )
+createBlip ( 2364.8955078125, 2377.5654296875, 10.8203125, 52, 2, 255, 0, 0, 255, 0, 300, getRootElement() )
 
 function giveBankKeyCard ( _, player )
 

@@ -169,7 +169,7 @@ function playerdeath ( killer, weapon, part )
 	setElementDimension ( player, 0 )
 	setElementInterior ( player, 0 )
 	showChat ( player, true )
-	showPlayerHudComponent ( player, "radar", true )
+	setPlayerHudComponentVisible ( player, "radar", true )
 	checkIfMedicRespawn ( player )
 	if isElement ( killer ) then
 		outputLog ( getPlayerName ( player ).." wurde von ".. getPlayerName ( killer ) .." getötet ( Waffe: "..weapon.." )", "kill" )
@@ -200,7 +200,7 @@ function endfade ( player, timeToBeDeath )
 			setCameraMatrix ( player, 1605.4418945313, 1868.0090332031, 27.071100234985, 1606.3515625, 1819.0625, 22.315660476685 )
 		end
 		
-		showPlayerHudComponent ( player, "radar", false )
+		setPlayerHudComponentVisible ( player, "radar", false )
 		triggerClientEvent ( player, "showProgressBar", player )
 		showChat ( player, true )
 		

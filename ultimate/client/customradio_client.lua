@@ -201,7 +201,7 @@ function customRadioChannelSwitchDown ()
 end
 bindKey ( "radio_next", "down", customRadioChannelSwitchUp )
 bindKey ( "radio_previous", "down", customRadioChannelSwitchDown )
-showPlayerHudComponent ( "radio", false )
+setPlayerHudComponentVisible ( "radio", false )
 
 allowedToChangeRadioChannel = false
 addEventHandler ( "onClientPlayerRadioSwitch", getRootElement(),

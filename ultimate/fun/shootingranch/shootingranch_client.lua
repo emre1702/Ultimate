@@ -103,7 +103,7 @@ function startShootingRanchTest_func ()
 	
 	setWalkable ( false )
 	setInvulnerable ( true )
-	setControlState ( "aim_weapon", true )
+	setPedControlState ( "aim_weapon", true )
 	
 	local dim = getElementDimension ( lp )
 	
@@ -169,7 +169,7 @@ function startShootingRanchTest_func ()
 			setTimer (
 				function ()
 					if shootingRanchTimeLeft == "0.0" then
-						setControlState ( "fire", false )
+						setPedControlState ( "fire", false )
 						toggleControl ( "fire", false )
 						for key, index in pairs ( shootingRangeTargets ) do
 							if isElement ( key ) then
@@ -197,7 +197,7 @@ addEventHandler ( "startShootingRanchTest", getRootElement(), startShootingRanch
 
 function endShootingRanchTest_func ()
 
-	setControlState ( "aim_weapon", false )
+	setPedControlState ( "aim_weapon", false )
 	removeEventHandler ( "onClientRender", getRootElement(), shootingRanchDraw_render )
 	for key, index in pairs ( shootingRangeTargets ) do
 		if isElement ( key ) then

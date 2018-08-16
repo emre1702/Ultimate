@@ -17,7 +17,7 @@ function anticheat ()
 			guiSetVisible ( gLabels["InfoTextForum"], false )
 			guiSetVisible ( gLabels["InfoTextForumShadow"], false )
 		end
-		showPlayerHudComponent ( "radar", false )
+		setPlayerHudComponentVisible ( "radar", false )
 	else
 		if gLabels["InfoTextForum"] and not guiGetVisible ( gLabels["InfoTextForum"] ) then
 			if isElement ( gLabels["InfoTextForum"] ) then

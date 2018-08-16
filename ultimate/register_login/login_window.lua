@@ -37,8 +37,8 @@ local lastTick = getTickCount()
 -- recognizable
 showChat( false )
 showCursor( true )
-showPlayerHudComponent('all', false)
-showPlayerHudComponent('crosshair', true)
+setPlayerHudComponentVisible('all', false)
+setPlayerHudComponentVisible('crosshair', true)
 
 
 function checkBrowserActivated ( )

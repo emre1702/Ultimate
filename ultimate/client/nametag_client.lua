@@ -162,7 +162,7 @@ end
 addEventHandler("onClientPlayerTarget", getRootElement(), function(element) 
 	if element and getElementType (element) == "player" then
 		if getPedWeaponSlot (element) == 5 or getPedWeaponSlot (element) == 6 then
-			if getControlState ("aim_weapon") == true then
+			if getPedControlState ("aim_weapon") == true then
 				target = getPlayerName(element)  
 				removeEventHandler("onClientKey", getLocalPlayer(), removeEventsOnTargetStop)
 				addEventHandler("onClientKey", getLocalPlayer(), removeEventsOnTargetStop)

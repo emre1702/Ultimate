@@ -1,4 +1,8 @@
-﻿setServerPassword ( "" )
+﻿if isObjectInACLGroup("resource."..getResourceName(resource), aclGetGroup("Admin")) then 
+	setServerPassword ( "" )
+else 
+	outputDebugString("Starte Ultimate ohne Admin-Rechte ...")
+end 
 
 function mainTimer ()
 

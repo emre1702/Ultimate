@@ -174,7 +174,7 @@ function updateDistanceToRCVan ( veh )
 			return true
 		else
 			toggleControl ( "enter_exit", false )
-			setControlState ( "enter_exit", false )
+			setPedControlState ( "enter_exit", false )
 			toggleControl ( "enter_exit", true )
 			
 			triggerServerEvent ( "destroyMyRCVehicle", lp )

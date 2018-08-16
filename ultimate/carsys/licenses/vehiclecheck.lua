@@ -30,15 +30,15 @@ function opticExitVehicle ( player )
 
 		end
 
-		setControlState ( player, "enter_exit", false )
+		setPedControlState ( player, "enter_exit", false )
 
 		setTimer ( removePedFromVehicle, 750, 1, player )
 
-		setTimer ( setControlState, 150, 1, player, "enter_exit", false )
+		setTimer ( setPedControlState, 150, 1, player, "enter_exit", false )
 
-		setTimer ( setControlState, 200, 1, player, "enter_exit", true )
+		setTimer ( setPedControlState, 200, 1, player, "enter_exit", true )
 
-		setTimer ( setControlState, 700, 1, player, "enter_exit", false )
+		setTimer ( setPedControlState, 700, 1, player, "enter_exit", false )
 
 	end
 

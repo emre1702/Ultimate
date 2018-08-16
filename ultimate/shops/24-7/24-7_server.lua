@@ -11,10 +11,10 @@ function Marker24_7Hit ( player, dim )
 			setElementInterior ( player, 6 )
 			setCameraMatrix ( player, -24.504987716675, -50.165203094482, 1004.0047607422, -21.805931091309, -57.300312042236, 1005.2012329102 )
 			triggerClientEvent ( player, "create24_7Shop", getRootElement() )
-			showPlayerHudComponent ( player, "ammo", true )
-			showPlayerHudComponent ( player, "weapon", true )
-			showPlayerHudComponent ( player, "armour", true )
-			showPlayerHudComponent ( player, "money", true )
+			setPlayerHudComponentVisible ( player, "ammo", true )
+			setPlayerHudComponentVisible ( player, "weapon", true )
+			setPlayerHudComponentVisible ( player, "armour", true )
+			setPlayerHudComponentVisible ( player, "money", true )
 		end
 	end
 end
@@ -29,10 +29,10 @@ function Marker24_7_LV_Hit ( player, dim )
 			setElementInterior ( player, 6 )
 			setCameraMatrix ( player, -24.504987716675, -50.165203094482, 1004.0047607422, -21.805931091309, -57.300312042236, 1005.2012329102 )
 			triggerClientEvent ( player, "create24_7Shop", getRootElement() )
-			showPlayerHudComponent ( player, "ammo", true )
-			showPlayerHudComponent ( player, "weapon", true )
-			showPlayerHudComponent ( player, "armour", true )
-			showPlayerHudComponent ( player, "money", true )
+			setPlayerHudComponentVisible ( player, "ammo", true )
+			setPlayerHudComponentVisible ( player, "weapon", true )
+			setPlayerHudComponentVisible ( player, "armour", true )
+			setPlayerHudComponentVisible ( player, "money", true )
 		end
 	end
 end

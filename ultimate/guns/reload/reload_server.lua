@@ -24,12 +24,12 @@ function reload (player, key, state)
 					local ammo_outclip = getPedTotalAmmo ( player ) - getPedAmmoInClip ( player, getPedWeaponSlot ( player ) )
 					if ammo_outclip >= total_clip then
 						if not reloadigPlayers[player] then
-							if not getControlState ( player, "aim_weapon" ) then
+							if not getPedControlState ( player, "aim_weapon" ) then
 								local cur_clip = getPedAmmoInClip ( player )
 								--takeWeapon ( player, getPedWeapon ( player ), cur_clip ) deaktiviert wegen muni nachlade bug
 								giveWeapon ( player, getPedWeapon ( player ), 0, true )
-								setControlState ( player, "fire", false )
-								setControlState ( player, "aim_weapon", false )
+								setPedControlState ( player, "fire", false )
+								setPedControlState ( player, "aim_weapon", false )
 								setTimer ( reloadPedWeapon, 250, 1, player )
 								triggerClientEvent ( player, "reload_settimer_trigger", getRootElement(), total_clip, cur_clip )
 								reloadigPlayers[player] = true

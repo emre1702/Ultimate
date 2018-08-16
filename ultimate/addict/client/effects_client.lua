@@ -132,8 +132,8 @@ function deactivateDrugEffect_func ()
 	toggleControl ( "vehicle_left", true )
 	toggleControl ( "vehicle_right", true )
 	
-	setControlState ( "vehicle_left", false )
-	setControlState ( "vehicle_right", false )
+	setPedControlState ( "vehicle_left", false )
+	setPedControlState ( "vehicle_right", false )
 	
 	drunken = false
 	stoned = false
@@ -145,7 +145,7 @@ addEventHandler ( "deactivateDrugEffect", getRootElement(), deactivateDrugEffect
 
 function drugAiming ()
 
-	if getControlState ( "aim_weapon" ) then
+	if getPedControlState ( "aim_weapon" ) then
 		--[[local x, y, z = getPedTargetEnd ( lp )
 		local drugAimS = drugSettings.aimDisturbe * strenght
 		x = x + math.random ( -drugAimS, drugAimS )
@@ -163,9 +163,9 @@ function drunkDiveMode ()
 		toggleControl ( "vehicle_right", true )
 		toggleControl ( "vehicle_left", true )
 		if lastDrugControl == "left" then
-			setControlState ( "vehicle_left", false )
+			setPedControlState ( "vehicle_left", false )
 		else
-			setControlState ( "vehicle_right", false )
+			setPedControlState ( "vehicle_right", false )
 		end
 	end
 	
@@ -184,7 +184,7 @@ function drunkModeLeft ()
 	toggleControl ( "vehicle_left", false )
 	toggleControl ( "vehicle_right", false )
 	lastDrugControl = "left"
-	setControlState ( "vehicle_left", true )
+	setPedControlState ( "vehicle_left", true )
 end
 
 function drunkModeRight ()
@@ -192,5 +192,5 @@ function drunkModeRight ()
 	toggleControl ( "vehicle_right", false )
 	toggleControl ( "vehicle_left", false )
 	lastDrugControl = "right"
-	setControlState ( "vehicle_right", true )
+	setPedControlState ( "vehicle_right", true )
 end

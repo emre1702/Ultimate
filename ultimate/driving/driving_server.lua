@@ -75,8 +75,8 @@ function stopTaxi_func ( player )
 		setElementModel ( driver, 222 )
 
 		if isElement ( player ) then
-			setTimer ( setControlState, 1000, 1, player, "enter_exit", true )
-			setTimer ( setControlState, 1200, 1, player, "enter_exit", false )
+			setTimer ( setPedControlState, 1000, 1, player, "enter_exit", true )
+			setTimer ( setPedControlState, 1200, 1, player, "enter_exit", false )
 			toggleTaxiControle ( player, true )
 		end
 	end

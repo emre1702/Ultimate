@@ -25,11 +25,11 @@ end
 
 function proceedRoute ( driver, route )
 
-	setControlState ( "accelerate", false )
-	setControlState ( "vehicle_left", false )
-	setControlState ( "vehicle_right", false )
-	setControlState ( "handbrake", false )
-	setControlState ( "brake_reverse", false )
+	setPedControlState ( "accelerate", false )
+	setPedControlState ( "vehicle_left", false )
+	setPedControlState ( "vehicle_right", false )
+	setPedControlState ( "handbrake", false )
+	setPedControlState ( "brake_reverse", false )
 	local veh = getPedOccupiedVehicle ( driver )
 	setElementCollidableWith ( veh, getRootElement(), false )
 	local x1, y1, z1 = getElementPosition ( veh )
@@ -63,28 +63,28 @@ function proceedRoute ( driver, route )
 		speed = math.floor ( math.sqrt(vx^2 + vy^2 + vz^2)*214 )
 		maxspeed = getMaxSpeedForTaxi ( speed, dist, dist2, rot, nx2, ny2, nx, ny )
 		if speed < maxspeed then
-			setControlState ( "accelerate", true )
+			setPedControlState ( "accelerate", true )
 		elseif speed >= maxspeed + 10 then
-			setControlState ( "brake_reverse", true )
+			setPedControlState ( "brake_reverse", true )
 		end
 		if speed < 15 then
-			setControlState ( "accelerate", true )
+			setPedControlState ( "accelerate", true )
 		end
 		
 		local _, _, vr = getElementRotation ( veh )
 		local tr = findRotation ( x1, y1, x2, y2 )
 		local rd = tr - vr
 		if ( rd > 3 ) then
-			setControlState ( "vehicle_right", true )
+			setPedControlState ( "vehicle_right", true )
 		elseif ( rd < -3 ) then
-			setControlState ( "vehicle_left", true )
+			setPedControlState ( "vehicle_left", true )
 		end
 		
 		
 		setTimer ( proceedRoute, 50, 1, lp, route )
 	else
 		outputChatBox ( "Du bist am Ziel angekommen!", 0, 125, 0 )
-		setControlState ( "handbrake", true )
+		setPedControlState ( "handbrake", true )
 		removeEventHandler ( "onClientElementStreamIn", getRootElement(), taxiStreamer )
 		triggerServerEvent ( "stopTaxi", lp, lp )
 	end

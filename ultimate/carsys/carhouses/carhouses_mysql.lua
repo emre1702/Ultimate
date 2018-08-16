@@ -20,7 +20,7 @@ MySQLCarhouseBlips = {}
  MySQLCarhouseBlips["$HODY USED AUTOS"] = 55
  MySQLCarhouseBlips["Auto Bahn"] = 55
  MySQLCarhouseBlips["Bonusfahrzeuge\n( See )"] = 51
- MySQLCarhouseBlips["Bonusfahrzeuge\n( Land )"] = 99
+ MySQLCarhouseBlips["Bonusfahrzeuge\n( Land )"] = 51
  MySQLCarhouseBlips["Auto Bahn"] = 55
  MySQLCarhouseBlips["Kleinstadt-\nhaendler"] = 55
 

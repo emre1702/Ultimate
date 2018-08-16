@@ -22,7 +22,7 @@ function whichCasinoGettingRobbed ( target )
 		if target then
 			if getElementInterior (source) == 1 or getElementInterior (source) == 10 or getElementInterior (source) == 12 then
 				if getPedWeaponSlot ( source ) ~= 0 then
-					if getControlState ("aim_weapon") == true then
+					if getPedControlState ("aim_weapon") == true then
 						local targetingcasinoped = false
 						if getElementInterior(source) == 1 then
 							if vioGetElementData(source, "fraktion") == 3 or vioGetElementData(source, "fraktion") == 7 or vioGetElementData(source, "fraktion") == 9 or vioGetElementData(source, "fraktion") == 12 or vioGetElementData(source, "fraktion") == 13 then 

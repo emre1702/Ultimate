@@ -110,8 +110,8 @@ function pizzaBuySFCenterHit ( player, dim )
 		bindKey ( player, "enter", "down", pizzaBuy, player )
 		foodtext ( player, "Salat", "5" )
 		setElementFrozen ( player, true )
-		showPlayerHudComponent ( player, "health", true )
-		showPlayerHudComponent ( player, "money", true )
+		setPlayerHudComponentVisible ( player, "health", true )
+		setPlayerHudComponentVisible ( player, "money", true )
 	end
 end
 addEventHandler ( "onMarkerHit", pizzaBuySFCenter, pizzaBuySFCenterHit )
@@ -130,8 +130,8 @@ function pizzaBuyPier69Hit ( player, dim )
 		bindKey ( player, "enter", "down", pizzaBuy, player )
 		foodtext ( player, "Salat", "5" )
 		setElementFrozen ( player, true )
-		showPlayerHudComponent ( player, "health", true )
-		showPlayerHudComponent ( player, "money", true )
+		setPlayerHudComponentVisible ( player, "health", true )
+		setPlayerHudComponentVisible ( player, "money", true )
 	end
 end
 addEventHandler ( "onMarkerHit", pizzaBuyPier69, pizzaBuyPier69Hit )
@@ -147,8 +147,8 @@ function pizzaLeave ( player )
 	unbindKey ( player, "space", "down", pizzaLeave )
 	unbindKey ( player, "enter", "down", pizzaBuy )
 	setElementFrozen ( player, false )
-	showPlayerHudComponent ( player, "health", false )
-	showPlayerHudComponent ( player, "money", false )
+	setPlayerHudComponentVisible ( player, "health", false )
+	setPlayerHudComponentVisible ( player, "money", false )
 end
 
 function pizzaLeft ( player )

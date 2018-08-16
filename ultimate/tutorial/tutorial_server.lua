@@ -23,7 +23,7 @@ function intfix_func ()
 	local player = client
 	setElementInterior ( player, 14 )
 	setElementAlpha ( player, 255 )
-	showPlayerHudComponent ( player, "radar", true )
+	setPlayerHudComponentVisible ( player, "radar", true )
 end
 addEvent ( "intfix", true )
 addEventHandler ( "intfix", getRootElement(), intfix_func )

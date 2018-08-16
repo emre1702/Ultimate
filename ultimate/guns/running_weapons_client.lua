@@ -38,7 +38,7 @@ addEventHandler ( "onClientPlayerAimWeapon", getRootElement(), playerStartAimWea
 
 function reAdjustAim ()
 
-	if getControlState ( "aim_weapon" ) then
+	if getPedControlState ( "aim_weapon" ) then
 		local x1, y1, z1 = getElementPosition ( lp )
 		local x2, y2, z2 = getPedTargetEnd ( lp )
 		local rot = findRotation ( x1, y1, x2, y2 )

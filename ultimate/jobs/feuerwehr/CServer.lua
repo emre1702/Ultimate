@@ -579,7 +579,7 @@ cFunc["loesche_feuer"] = function(id)
 				-- outputChatBox("e")	
 					cSetting["fire_loescher"][id] = {}
 					toggleAllControls ( player, true )
-					setControlState ( player, "fire", false )
+					setPedControlState ( player, "fire", false )
 					setCameraTarget ( player, player )
 						deinefeuer = vioGetElementData ( player, "feuer" )
 						if deinefeuer < 50 then
@@ -644,7 +644,7 @@ cFunc["add_player_loescher"] = function(id)
 		cSetting["fire_loescher"][id] = {}
 		cSetting["fire_loescher"][id]["timer"] = setTimer(cFunc["loesche_feuer"], 5000, 1, id)
 		toggleAllControls ( source, false )
-		setControlState ( source, "fire", true )
+		setPedControlState ( source, "fire", true )
 		setCameraTarget ( source, nil )
 		-- outputChatBox("bbbbbbbbbb")
 		cSetting["fire_loescher"][id][source] = source

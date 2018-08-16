@@ -406,7 +406,7 @@ local function onVehicleEnterFactionVehicleRest(player, seat)
 				giveWeapon(player, 46)
 			end 
 		-- Mechaniker --
-		else if faction == 11 then 
+		elseif faction == 11 then 
 			if not vioGetElementData (source, "magnet") then
 				setVehicleAsMagnetHelicopter(source)
 			end
@@ -542,9 +542,18 @@ end
 
 -- Beispiel für color: {255, 0, 0, paintjob=3} 
 function createFactionVehicle ( model, x, y, z, rx, ry, rz, faction, color, numberplate )
-	for i=1, 3 do
-		if not color[i] then 
-			color[i] = 0
+
+	if not color[1] then 
+		color[1] = 0
+	end 
+	local colorarraysize = #color 
+	for j=1, 3 do
+		if colorarraysize > 3*(j-1) and colorarraysize < 3*j then 
+			for i=3*(j-1)+2, 3*j do 
+				if not color[i] then 
+					color[i] = 0
+				end 
+			end 
 		end 
 	end
 	

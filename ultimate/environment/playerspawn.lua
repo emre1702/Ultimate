@@ -1,7 +1,7 @@
 ﻿function onPlayerSpawn_func ()
 
 	setPedSkin ( source, vioGetElementData ( source, "skinid") )
-	showPlayerHudComponent ( source, "radar", true )
+	setPlayerHudComponentVisible ( source, "radar", true )
 	setTimer ( ShowWanteds_func, 250, 1, source )
 	
     if isKeyBound ( source, "r", "down", reload ) then

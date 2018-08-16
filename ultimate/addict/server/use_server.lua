@@ -76,9 +76,9 @@ function detoxSympton ( player )
 
 	if getPedOccupiedVehicle ( player ) then
 		toggleControl ( player, "accelerate", false )
-		setControlState ( player, "accelerate", true )
+		setPedControlState ( player, "accelerate", true )
 		setTimer ( toggleControl, 5000, 1, player, "accelerate", true )
-		setTimer ( setControlState, 5000, 1, player, "accelerate", false )
+		setTimer ( setPedControlState, 5000, 1, player, "accelerate", false )
 	else
 		crackAnimation_func ( player )
 	end

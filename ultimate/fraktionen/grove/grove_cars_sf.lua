@@ -1,5 +1,5 @@
 -- SF --
-local color = 0, 238, 0
+local color = {0, 238}
 
 createFactionVehicle ( 409, -2467.8994140625, -134.2998046875, 25.38219833374, 0, 0, 89.994506835938, 13, color )
 createFactionVehicle ( 482, -2462.7001953125, -138.2001953125, 26, 0, 0, 0, 13, color )

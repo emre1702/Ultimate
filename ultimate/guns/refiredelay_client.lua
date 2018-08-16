@@ -19,8 +19,8 @@ function rocketLauncherRefireDelay ( weapon, ammo )
 		local delay = refireDelays[weapon]
 		toggleControl ( "fire", false )
 		toggleControl ( "action", false )
-		setControlState ( "fire", false )
-		setControlState ( "action", false )
+		setPedControlState ( "fire", false )
+		setPedControlState ( "action", false )
 		weaponFireDelayEnabled = true
 		setTimer (
 			function ()

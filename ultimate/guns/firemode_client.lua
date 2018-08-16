@@ -53,7 +53,7 @@ function weaponFireModeDecision ( weapon )
 		if firestate == "auto" then
 			-- Vollautomatik = GTA-Standart
 		elseif firestate == "semi" and not isTimer ( weaponModeTimer ) then
-			setControlState ( "fire", false )
+			setPedControlState ( "fire", false )
 			toggleControl ( "fire", false )
 			weaponModeTimer = setTimer ( toggleControl, 250, 1, "fire", true )
 		elseif firestate == "burst" and not isTimer ( weaponModeTimer ) then
@@ -68,8 +68,8 @@ addEventHandler ( "onClientPlayerWeaponFire", getRootElement(), weaponFireModeDe
 function burstFire ( weapon )
 
 	weapon = getPedWeapon ( lp )
-	if getControlState ( "fire" ) and fireModeWeapons[weapon] then
-		setTimer ( setControlState, fireModeWeapons[weapon], 1, "fire", false )
+	if getPedControlState ( "fire" ) and fireModeWeapons[weapon] then
+		setTimer ( setPedControlState, fireModeWeapons[weapon], 1, "fire", false )
 		setTimer ( toggleControl, fireModeWeapons[weapon], 1, "fire", false )
 		weaponModeTimer = setTimer ( toggleControl, fireModeWeapons[weapon]*2, 1, "fire", true )
 		setTimer ( burstFire, fireModeWeapons[weapon]*2, 1, weapon )

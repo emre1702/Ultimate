@@ -10,15 +10,15 @@ function vehFire1 ()
 			reEnableFireTime = setTimer ( reEnableFire, 15000, 1 )
 			toggleControl ( "vehicle_fire", false )
 			toggleControl ( "vehicle_secondary_fire", false )
-			setControlState ( "vehicle_fire", true )
-			setTimer ( setControlState, 100, 1, "vehicle_fire", false )
+			setPedControlState ( "vehicle_fire", true )
+			setTimer ( setPedControlState, 100, 1, "vehicle_fire", false )
 		end
 	elseif getElementModel ( lv ) == 425 then
 		if not isTimer ( reEnableFireTime ) then
 			reEnableFireTime = setTimer ( reEnableFire, 5000, 1 )
 			toggleControl ( "vehicle_fire", false )
-			setControlState ( "vehicle_fire", true )
-			setTimer ( setControlState, 100, 1, "vehicle_fire", false )
+			setPedControlState ( "vehicle_fire", true )
+			setTimer ( setPedControlState, 100, 1, "vehicle_fire", false )
 		end
 	end
 end
@@ -30,8 +30,8 @@ function vehFire2 ()
 			reEnableFireTime = setTimer ( reEnableFire, 15000, 1 )
 			toggleControl ( "vehicle_fire", false )
 			toggleControl ( "vehicle_secondary_fire", false )
-			setControlState ( "vehicle_secondary_fire", true )
-			setTimer ( setControlState, 100, 1, "vehicle_secondary_fire", false )
+			setPedControlState ( "vehicle_secondary_fire", true )
+			setTimer ( setPedControlState, 100, 1, "vehicle_secondary_fire", false )
 		end
 	end
 end

@@ -53,7 +53,7 @@ function isPedAiming ( ped )
 	if getLocalPlayer then
 		return getPedControlState ( ped, "aim_weapon" )
 	else
-		return getControlState ( ped, "aim_weapon" )
+		return getPedControlState ( ped, "aim_weapon" )
 	end
 	return false
 end

@@ -123,7 +123,7 @@ roulettFields["zero"] = true
 function startRoulett_func ( tableX, tableY, tableZ, int )
 
 	local dim = getElementDimension ( lp )
-	showPlayerHudComponent ( "radar", false )
+	setPlayerHudComponentVisible ( "radar", false )
 	
 	roulettStarted = true
 	
@@ -180,7 +180,7 @@ function endRoulett_func ()
 	setCameraTarget ( lp )
 	showCursor ( false )
 	destroyElement ( gWindow["roulett"] )
-	showPlayerHudComponent ( "radar", true )
+	setPlayerHudComponentVisible ( "radar", true )
 end
 addEvent ( "endRoulett", true )
 addEventHandler ( "endRoulett", getRootElement(), endRoulett_func )

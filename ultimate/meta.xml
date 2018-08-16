@@ -17,8 +17,6 @@
 	
 	<script src="mysql\mysql_start.lua" />
 	<script src="mysql\mysql_functions.lua" />
-
-	<script src="mysql\auto_update_db.lua" />
 	
 	<script src="hook_server.lua" />
 	<script src="hook_client.lua" />

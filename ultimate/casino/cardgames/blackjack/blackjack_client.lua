@@ -157,7 +157,7 @@ end
 
 function startBlackJack ( id )
 
-	showPlayerHudComponent ( "radar", false )
+	setPlayerHudComponentVisible ( "radar", false )
 	blackJackCurCards = 0
 	blackJackX, blackJackY, blackJackZ = blackJackTables["x2"][id], blackJackTables["y2"][id], blackJackTables["z2"][id]
 	hideAllChips ()
@@ -462,7 +462,7 @@ end
 function endBlackJack_func ( text, r, g, b )
 
 	unbindBlackJackKeys ()
-	showPlayerHudComponent ( "radar", true )
+	setPlayerHudComponentVisible ( "radar", true )
 	setElementClicked ( false )
 	setInvulnerable ( false )
 	blackJackBetInfoText = text

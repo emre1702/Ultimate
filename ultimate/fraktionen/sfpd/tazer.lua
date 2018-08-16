@@ -73,7 +73,7 @@ function defreeze_tazer ( player )
 			if isTimer ( cuffTimer[player] ) then
 				toggleControl ( player, "sprint", false )
 				toggleControl ( player, "walk", false )
-				setControlState ( player, "walk", true )
+				setPedControlState ( player, "walk", true )
 			end
 		end
 	end
@@ -119,7 +119,7 @@ function cuff_func ( player, cmd, target )
 					else
 						toggleControl ( target, "sprint", false )
 						toggleControl ( target, "walk", false )
-						setControlState ( target, "walk", true )
+						setPedControlState ( target, "walk", true )
 						outputChatBox ( getPlayerName(player).." hat dich gefesselt! Du kannst nicht mehr rennen!", target, 0, 125, 0 )
 						outputChatBox ( "Du hast "..getPlayerName(target).." Handschellen angelegt!", player, 0, 125, 0 )
 						takeAllWeapons ( target )
@@ -145,6 +145,6 @@ function reengage_sprint ( player )
 	vioSetElementData ( player, "sprint", 0 )
 	toggleControl ( player, "sprint", true )
 	toggleControl ( player, "walk", true )
-	setControlState ( player, "walk", false )
+	setPedControlState ( player, "walk", false )
 	outputChatBox ( "Du hast deine Fußfesseln gelöst!", player,  0, 125, 0 )
 end

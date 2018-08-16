@@ -5,7 +5,7 @@ function RemoteSpawnPlayer ( player )
 	if isElement ( player ) then
 		local pname = getPlayerName ( player )
 		toggleAllControls ( player, true )
-		showPlayerHudComponent ( player, "radar", true )
+		setPlayerHudComponentVisible ( player, "radar", true )
 		if vioGetElementData ( player, "spawnpos_x" ) == "wohnmobil" then
 			local spawned = false
 			for i = 1, vioGetElementData ( player, "maxcars" ) do

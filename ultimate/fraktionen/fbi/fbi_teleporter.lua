@@ -24,7 +24,7 @@ addEventHandler ( "onMarkerHit", FederalFromHeli, FederalFromHeli_func )
 function FederalToBunker_func ( player, dim )
 
 	if getElementType ( player ) == "player" and dim and getPedOccupiedVehicle ( player ) == false then
-		fadeElementInterior ( player, 10, 987.66186523438, -4.663423538208, 248.5625, 0, 0 )
+		fadeElementInterior ( player, 10, 988.9, -4.5, 248.6, 0, 0 )
 	end
 end
 addEventHandler ( "onMarkerHit", FederalToBunker, FederalToBunker_func )

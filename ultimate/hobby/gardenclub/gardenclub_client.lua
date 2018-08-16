@@ -36,7 +36,7 @@ function showGardenCenterMenue_func ()
 	gButton["gardenclubClose"] = guiCreateButton(214,26+53*2,81,44,"Fenster schliessen",false,gWindow["gardenclub"])
 	gButton["gardenclubSell"] = guiCreateButton(214,26+53*3,81,44,"Verkaufen",false,gWindow["gardenclub"])
 	
-	if vioClientGetElementData ( "club" ) == "gartenverein" then
+	if vioClientGetElementData ( "club" ) ~= "gartenverein" then
 		gButton["joinLeaveGardenclub"] = guiCreateButton(214,26,83,44,"Mitglied werden",false,gWindow["gardenclub"])
 	else
 		gButton["joinLeaveGardenclub"] = guiCreateButton(214,26,83,44,"Club verlassen",false,gWindow["gardenclub"])

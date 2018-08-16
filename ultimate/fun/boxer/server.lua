@@ -33,10 +33,10 @@ function botErstellen( player )
 end
 
 --Die Marker werden erstellt und in den Interior geportet wenn nötig
-local boxArenaBlip = createBlip ( -2455.36328125, -135.8212890625, 25.196598815918, 54, 1 )
-local boxMarkerRein = createMarker( -2455.36328125, -135.8212890625, 25.196598815918, "cylinder", 1, 255, 0, 0 )
-local boxMarkerRaus = createMarker( 772.2177734375, -4.703125, 999.7786987305, "cylinder", 1, 255, 0, 0 )
-local boxMarkerInnenStart = createMarker( 757.1298828125, 5.650390625, 999.7786987305, "cylinder", 1, 255, 0, 0 )
+local boxArenaBlip = createBlip ( -2268.9, -155.9, 35.3, 54, 2, 255, 0, 0, 255, 0, 300, getRootElement() )
+local boxMarkerRein = createMarker( -2270.5, -155.9, 34.4, "cylinder", 1.1, 255, 0, 0 )
+local boxMarkerRaus = createMarker( 772.2177734375, -4.703125, 999.7786987305, "cylinder", 1.1, 255, 0, 0 )
+local boxMarkerInnenStart = createMarker( 757.1298828125, 5.650390625, 999.7786987305, "cylinder", 1.1, 255, 0, 0 )
 setElementInterior( boxMarkerInnenStart, 5)
 setElementInterior( boxMarkerRaus, 5)
 
